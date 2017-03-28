@@ -1,0 +1,5 @@
+.vagrant
+.DS_Store
+src/protected/runtime/*.log
+src/protected/vendor
+src/protected/composer.lock
