@@ -11,8 +11,7 @@
 . /home/vagrant/install/helpers/init-env.sh '/home/vagrant'
 
 # install apache, mysql, and php ... and allow the user to run these files
-# scripts=(init.sh mysql.sh apache_php.sh composer.sh jenkins.sh)
-scripts=(init.sh jenkins.sh)
+scripts=(init.sh mysql.sh apache_php.sh composer.sh)
 n_elements=${#scripts[@]}
 
 

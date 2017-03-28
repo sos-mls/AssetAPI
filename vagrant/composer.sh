@@ -4,8 +4,8 @@ sudo apt-get -y --force-yes install curl php5-cli
 
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
-cd /var/www/skeleton/protected
+cd /var/www/assets_api/protected
 
-sudo ./composer.phar update
+sudo composer update
 
 cd ~
