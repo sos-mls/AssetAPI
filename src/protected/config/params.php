@@ -16,5 +16,11 @@ return array(
 	'copyrightInfo' => 'Copyright &copy; 2016 by Sale Cents',
 
 	// The date format used by the database
-	'dbDateFormat' => 'Y-m-d H:i:s'
+	'dbDateFormat' => 'Y-m-d H:i:s',
+
+	'global_root_dir' => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/',
+
+	'local_asset_dir' => getenv("DOCUMENT_ROOT") . '/assets/',
+
+	'relative_asset_dir' => '//' . $_SERVER['HTTP_HOST'] . '/assets/read?name=',
 );

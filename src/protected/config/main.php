@@ -85,6 +85,6 @@ return array(
 	'params' => require(dirname(__FILE__) . '/params.php'),
 	
 	'controllerMap' => array(
-		'default' => 'application.controllers.DefaultController',
+		'default' => 'application.controllers.AssetsController',
 	),
 );

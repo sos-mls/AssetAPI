@@ -19,5 +19,7 @@ Vagrant.configure(2) do |config|
     vb.gui = true
   end
 
+  config.vm.post_up_message = "You can access Assets Api at http://192.168.201.71"
+
   # End Configuring
 end

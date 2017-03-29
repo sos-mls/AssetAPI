@@ -14,7 +14,11 @@ This mentality allows for clean design philosophy with no other use cases. If an
 
 ## Testing Locally ##
 
-To test locally install PHPUnit and imagemagick for php.
+To test locally install PHPUnit and imagemagick for php. After their installation simply run:
+
+```shell
+$ phpunit -c build/phpunit.xml 
+```
 
 ### PHPUnit: ###
 

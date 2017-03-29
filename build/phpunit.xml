@@ -26,6 +26,7 @@
             <directory>../src/protected/components</directory>
             <directory>../src/protected/controllers</directory>
             <directory>../src/protected/models</directory>
+            <directory>../src/protected/traits</directory>
         </whitelist>
     </filter>
 

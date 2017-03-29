@@ -39,7 +39,7 @@ abstract class BaseAsset extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('asset_id, asset_type_id, file_name, file_size, uploaded_name', 'required'),
+			array('asset_type_id, file_name, file_size, uploaded_name', 'required'),
 			array('asset_id, asset_type_id, file_size', 'numerical', 'integerOnly'=>true),
 			array('file_name', 'length', 'max'=>256),
 			array('uploaded_name', 'length', 'max'=>64),

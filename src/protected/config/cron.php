@@ -39,7 +39,7 @@ return array(
  
         // Your DB connection
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=SkeletonDB',
+            'connectionString' => 'mysql:host=localhost;dbname=AssetsAPIDB',
             'username' => 'root',
             'password' => 'default_password',
             'emulatePrepare' => true,
