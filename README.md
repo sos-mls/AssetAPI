@@ -1,4 +1,4 @@
-# AssetsAPI #
+# AssetAPI #
 
 Exists to create, delete, and read an asset. The AssetsAPI is a centralized API endpoint that handles all asset creation.
 
