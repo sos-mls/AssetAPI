@@ -14,7 +14,7 @@ if [ "$DOC_ROOT" = "	DocumentRoot /var/www/html" ]; then
 	sudo sed -i '166s/AllowOverride\ None/AllowOverride\ All/g' /etc/apache2/apache2.conf
 
 	# Setup root directory for apache to be /var/www/website
-	sudo sed -i 's/\/var\/www\/html/\/var\/www\/assets_api/g' /etc/apache2/sites-enabled/000-default.conf
+	sudo sed -i 's/\/var\/www\/html/\/var\/www\/asset_api/g' /etc/apache2/sites-enabled/000-default.conf
 
 fi
 
@@ -32,4 +32,4 @@ sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10M/g' /etc/php5/a
 sudo service apache2 restart
 
 # For GII!!!
-sudo mkdir /var/www/assets_api/assets
+sudo mkdir /var/www/asset_api/assets

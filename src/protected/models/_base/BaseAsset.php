@@ -12,8 +12,8 @@
  * @property integer $asset_id
  * @property integer $asset_type_id
  * @property string $file_name
- * @property integer $file_size
  * @property string $uploaded_name
+ * @property integer $is_used
  * @property string $created_at
  *
  * @property AssetType $assetType
@@ -39,13 +39,13 @@ abstract class BaseAsset extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('asset_type_id, file_name, file_size, uploaded_name', 'required'),
-			array('asset_id, asset_type_id, file_size', 'numerical', 'integerOnly'=>true),
+			array('asset_type_id, file_name, uploaded_name', 'required'),
+			array('asset_type_id, is_used', 'numerical', 'integerOnly'=>true),
 			array('file_name', 'length', 'max'=>256),
 			array('uploaded_name', 'length', 'max'=>64),
 			array('created_at', 'safe'),
-			array('created_at', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('asset_id, asset_type_id, file_name, file_size, uploaded_name, created_at', 'safe', 'on'=>'search'),
+			array('is_used, created_at', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('asset_id, asset_type_id, file_name, uploaded_name, is_used, created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,8 +66,8 @@ abstract class BaseAsset extends GxActiveRecord {
 			'asset_id' => Yii::t('app', 'Asset'),
 			'asset_type_id' => null,
 			'file_name' => Yii::t('app', 'File Name'),
-			'file_size' => Yii::t('app', 'File Size'),
 			'uploaded_name' => Yii::t('app', 'Uploaded Name'),
+			'is_used' => Yii::t('app', 'Is Used'),
 			'created_at' => Yii::t('app', 'Created At'),
 			'assetType' => null,
 			'images' => null,
@@ -80,8 +80,8 @@ abstract class BaseAsset extends GxActiveRecord {
 		$criteria->compare('asset_id', $this->asset_id);
 		$criteria->compare('asset_type_id', $this->asset_type_id);
 		$criteria->compare('file_name', $this->file_name, true);
-		$criteria->compare('file_size', $this->file_size);
 		$criteria->compare('uploaded_name', $this->uploaded_name, true);
+		$criteria->compare('is_used', $this->is_used);
 		$criteria->compare('created_at', $this->created_at, true);
 
 		return new CActiveDataProvider($this, array(

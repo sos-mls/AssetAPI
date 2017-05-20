@@ -39,15 +39,14 @@ return array(
  
         // Your DB connection
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=AssetsAPIDB',
+            'connectionString' => 'mysql:host=localhost;dbname=AssetAPIDB',
             'username' => 'root',
             'password' => 'default_password',
             'emulatePrepare' => true,
             'charset' => 'utf8',
             'tablePrefix' => 'tbl_',
         ),
-        'hash' => array('class' => 'PBKDF2Hash'),
-        'random' => array('class' => 'RandomString'),
-        'cleanImage' => array('class' => 'CleanImage')
     ),
+    // application-level parameters that can be accessed using Yii::app()->params['paramName']
+    'params' => require(dirname(__FILE__) . '/params.php'),
 );

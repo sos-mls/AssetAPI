@@ -7,42 +7,42 @@
 // CWebApplication properties can be configured here.
 
 return array(
-	'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
 
-	'name' => 'Skeleton',
+    'name' => 'AssetApi',
 
-	// preloading 'log' component
-	'preload' => array('log'),
+    // preloading 'log' component
+    'preload' => array('log'),
 
-	// autoloading model and component classes
-	'import' => array(
-		'application.models.*',
-		'application.components.*',
-		'application.controllers.*',
-		'ext.giix-components.*',
-	),
+    // autoloading model and component classes
+    'import' => array(
+        'application.models.*',
+        'application.components.*',
+        'application.controllers.*',
+        'ext.giix-components.*',
+    ),
 
-	'modules' => array(
-		// Gii tool should be removed in production
-		'gii' => array(
-			'class' => 'system.gii.GiiModule',
-			'password' => 'here',
+    'modules' => array(
+        // Gii tool should be removed in production
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'here',
             'ipFilters' => array('127.0.0.1','192.168.201.*', '10.0.2.*'), 
-			'generatorPaths' => array(
-				'ext.giix-core', // giix generators
-			),
-		),
-	),
+            'generatorPaths' => array(
+                'ext.giix-core', // giix generators
+            ),
+        ),
+    ),
 
-	'defaultController' => 'default',
-	// application components
-	'components' => array(
+    'defaultController' => 'default',
+    // application components
+    'components' => array(
         'urlManager' => array(
-        	'class' => 'UrlManager',
-        	'urlFormat' => 'path',
-        	'showScriptName' => false,
-     		// 'caseSensitive' => false,
-        	'rules' => array(
+            'class' => 'Common\UrlManager',
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            // 'caseSensitive' => false,
+            'rules' => array(
                 // REST patterns
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
@@ -52,39 +52,33 @@ return array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-        	),
+            ),
         ),
-		'db' => array(
-			'connectionString' => 'mysql:host=localhost;dbname=AssetAPIDB',
-			'username' => 'root',
-			'password' => 'default_password',
-			'emulatePrepare' => true,
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-		),
-		'log' => array(
-			'class' => 'CLogRouter',
-			'routes' => array(
-				array(
-					'class' => 'CFileLogRoute',
-					'levels' => 'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class' => 'CWebLogRoute',
-				),
-				*/
-			),
-		),
-		'hash' => array('class' => 'PBKDF2Hash'),
-		'random' => array('class' => 'RandomString')
-	),
+        'db' => array(
+            'connectionString' => 'mysql:host=localhost;dbname=AssetAPIDB',
+            'username' => 'root',
+            'password' => 'default_password',
+            'emulatePrepare' => true,
+            'charset' => 'utf8',
+            'tablePrefix' => 'tbl_',
+        ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning',
+                )
+            ),
+        ),
+        'hash' => array('class' => 'Common\PBKDF2Hash'),
+        'random' => array('class' => 'Common\RandomString')
+    ),
 
-	// application-level parameters that can be accessed using Yii::app()->params['paramName']
-	'params' => require(dirname(__FILE__) . '/params.php'),
-	
-	'controllerMap' => array(
-		'default' => 'application.controllers.AssetsController',
-	),
+    // application-level parameters that can be accessed using Yii::app()->params['paramName']
+    'params' => require(dirname(__FILE__) . '/params.php'),
+    
+    'controllerMap' => array(
+        'default' => 'application.controllers.AssetController',
+    ),
 );

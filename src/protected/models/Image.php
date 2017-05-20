@@ -11,6 +11,39 @@ class Image extends BaseImage
 	/**
 	 *
 	 *
+	 * Object Methods
+	 *
+	 *
+	 */
+
+	/**
+	 * Gets the URL to the asset.
+	 * 
+	 * @return string 	The asset URL.
+	 */
+	public function getURL() {
+		return Yii::app()->params->relative_image_dir . $this->file_name;
+	}
+
+	/**
+	 * Converts all of the asset information to an array
+	 * 
+	 * @return array All of the asset information.
+	 */
+	public function toArray() {
+		return [
+			'public_url' => $this->getURL(),
+			'file_name'  => $this->file_name,
+			'file_size'  => $this->file_size,
+			'width'      => $this->width,
+			'height'     => $this->height,
+			'created_at' => $this->created_at,
+		];
+	}
+
+	/**
+	 *
+	 *
 	 * Scopes
 	 *
 	 * 
