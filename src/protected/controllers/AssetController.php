@@ -27,8 +27,7 @@ class AssetController extends ApiController
      */
     public function actionIndex() {
         $this->renderJSON([
-            'info' => 'https://bitbucket.org/scooblyboo/assetapi',
-            'local_asset_dir' => Yii::app()->params
+            'info' => 'https://bitbucket.org/scooblyboo/assetapi'
         ]);
     }
 }

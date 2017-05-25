@@ -1,6 +1,22 @@
 <?php
 
+/**
+ * Contains the Asset class.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
 Yii::import('application.models._base.BaseAsset');
+
+
+/**
+ * The Asset class.
+ *
+ * Tracks files of a certain type along, and their usage (if they should
+ * be collected from the garbage or not).
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
 
 class Asset extends BaseAsset
 {
@@ -79,6 +95,7 @@ class Asset extends BaseAsset
 			'type'          => $this->assetType->asset_type,
 			'file_name'     => $this->file_name,
 			'uploaded_name' => $this->uploaded_name,
+			'is_used' 		=> $this->is_used,
 			'created_at'    => $this->created_at,
 			$file_array_key => $file_array,
 		];

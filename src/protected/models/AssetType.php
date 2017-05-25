@@ -1,6 +1,21 @@
 <?php
 
+/**
+ * Contains the AssetType class.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
 Yii::import('application.models._base.BaseAssetType');
+
+/**
+ * The AssetType class.
+ *
+ * Tracks the current type of an asset and determines the type given the
+ * asset itself.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
 
 class AssetType extends BaseAssetType
 {

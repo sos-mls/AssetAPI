@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Contains the AssetType_Test class.
+ * 
+ * @package Test\Models
+ * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
+// namespace Test\Models;
+
+/**
+ * AssetType_Test class. A PHPUnit Test case class.
+ *
+ * Tests specific functions inside of the AssetType model class.
+ * 
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
+class AssetType_Test extends CDbTestCase
+{
+    const COMPARISON_DIRECTORY = 'protected/tests/test_comparison';
+
+    protected $fixtures=array(
+        'asset_types'=>'AssetType'
+    );
+
+    /**
+     *
+     *
+     *
+     * Input 
+     *
+     *
+     * 
+     */
+
+    /**
+     * A lsit of files with their expected AssetType
+     * 
+     * @return array An array of Orientation
+     */
+    public function input_getType()
+    {
+        return [
+            [
+                self::COMPARISON_DIRECTORY . '/big_file.jpg',
+                AssetType::IMAGE
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/contain_aspect_true.png',
+                AssetType::IMAGE
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/default_image.png',
+                AssetType::IMAGE
+            ]
+        ];
+    }
+
+    /**
+     *
+     *
+     *
+     * Test
+     *
+     *
+     *
+     */
+
+    /**
+     * Tests the forge.
+     *
+     * @dataProvider input_getType
+     *
+     * @param  string  $path          The file path.
+     * @param  array   $expected_type The expected Asset Type.
+     */
+    public function test_getType($path, $expected_type) {
+        $asset_type = AssetType::getType($path);
+        $this->assertEquals($expected_type, $asset_type->asset_type);
+    }
+}

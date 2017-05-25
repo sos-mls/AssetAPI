@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Contains the GarbageCollectionCommand class.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
+/**
  * The GarbageCollectionCommand deletes all unused assets.
  *
  * Runs through all of the assets that are unused and old enough for garbage

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Contains the ReadController class.
+ *
+ * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
 
 Yii::import('application.traits.ErrorResponse');
 
@@ -7,6 +12,10 @@ use Common\ApiController;
 
 /**
  * The ReadController is there for reading the given files referenced on this server.
+ *
+ * Allows for reads of images and assets where an asset response contains a json of
+ * the generic information about the asset and its references. The image response 
+ * contains the contents of the file.
  * 
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */

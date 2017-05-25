@@ -1,6 +1,20 @@
 <?php
 
+/**
+ * Contains the Image class.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
+
 Yii::import('application.models._base.BaseImage');
+
+/**
+ * The Image class.
+ *
+ * Contains the width, height, size, and name of the image.
+ *
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
+ */
 
 class Image extends BaseImage
 {

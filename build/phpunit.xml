@@ -9,8 +9,8 @@
          syntaxCheck="false"
         >
 	<testsuites>
-        <testsuite name="template-generator">
-            <directory suffix=".php">../src/protected/tests</directory>
+        <testsuite name="assets-api">
+            <directory suffix=".php">../src/protected/tests/models</directory>
         </testsuite>
     </testsuites>
 
