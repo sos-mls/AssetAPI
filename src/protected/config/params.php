@@ -4,7 +4,7 @@ use Asset\Action\Image as Action_Image;
 
 // this contains the application parameters that can be maintained via GUI
 
-return array(
+return [
     // this is displayed in the header section
     'title' => 'Skeleton',
 
@@ -49,4 +49,4 @@ return array(
             ]
         ]
     ]
-);
+];

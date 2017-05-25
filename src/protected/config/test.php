@@ -2,11 +2,14 @@
 
 return CMap::mergeArray(
     require(dirname(__FILE__).'/main.php'),
-    array(
-        'components'=>array(
-            'fixture'=>array(
+    [
+        'components'=>[
+            'fixture'=>[
                 'class'=>'system.test.CDbFixtureManager',
-            ),
-        ),
-    )
+            ],
+            'db'=>[
+                'connectionString' => 'mysql:host=localhost;dbname=AssetAPITestDB',
+            ],
+        ],
+    ]
 );

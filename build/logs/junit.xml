@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="assets-api" tests="3" assertions="3" failures="0" errors="0" time="0.099951">
-    <testsuite name="AssetType_Test" file="/var/www/asset_api/src/protected/tests/models/AssetType.php" tests="3" assertions="3" failures="0" errors="0" time="0.099951">
-      <testsuite name="AssetType_Test::test_getType" tests="3" assertions="3" failures="0" errors="0" time="0.099951">
-        <testcase name="test_getType with data set #0" assertions="1" time="0.083707"/>
-        <testcase name="test_getType with data set #1" assertions="1" time="0.008247"/>
-        <testcase name="test_getType with data set #2" assertions="1" time="0.007997"/>
+  <testsuite name="assets-api" tests="3" assertions="3" failures="0" errors="0" time="0.101034">
+    <testsuite name="AssetType_Test" file="/var/www/asset_api/src/protected/tests/models/AssetType.php" tests="3" assertions="3" failures="0" errors="0" time="0.101034">
+      <testsuite name="AssetType_Test::test_getType" tests="3" assertions="3" failures="0" errors="0" time="0.101034">
+        <testcase name="test_getType with data set #0" assertions="1" time="0.083293"/>
+        <testcase name="test_getType with data set #1" assertions="1" time="0.008733"/>
+        <testcase name="test_getType with data set #2" assertions="1" time="0.009008"/>
       </testsuite>
     </testsuite>
   </testsuite>

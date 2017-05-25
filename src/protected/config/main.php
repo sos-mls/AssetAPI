@@ -6,79 +6,79 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-return array(
+return [
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
 
     'name' => 'AssetApi',
 
     // preloading 'log' component
-    'preload' => array('log'),
+    'preload' => ['log'],
 
     // autoloading model and component classes
-    'import' => array(
+    'import' => [
         'application.models.*',
         'application.components.*',
         'application.controllers.*',
         'ext.giix-components.*',
-    ),
+    ],
 
-    'modules' => array(
+    'modules' => [
         // Gii tool should be removed in production
-        'gii' => array(
+        'gii' => [
             'class' => 'system.gii.GiiModule',
             'password' => 'here',
-            'ipFilters' => array('127.0.0.1','192.168.201.*', '10.0.2.*'), 
-            'generatorPaths' => array(
+            'ipFilters' => ['127.0.0.1','192.168.201.*', '10.0.2.*'], 
+            'generatorPaths' => [
                 'ext.giix-core', // giix generators
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
 
     'defaultController' => 'default',
     // application components
-    'components' => array(
-        'urlManager' => array(
+    'components' => [
+        'urlManager' => [
             'class' => 'Common\UrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
             // 'caseSensitive' => false,
-            'rules' => array(
+            'rules' => [
                 // REST patterns
-                array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-                array('api/update', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'PUT'),  // Update
-                array('api/delete', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'DELETE'),
-                array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
+                ['api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'],
+                ['api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'GET'],
+                ['api/update', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'PUT'],
+                ['api/delete', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'DELETE'],
+                ['api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'],
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ),
-        ),
-        'db' => array(
+            ],
+        ],
+        'db' => [
             'connectionString' => 'mysql:host=localhost;dbname=AssetAPIDB',
             'username' => 'root',
             'password' => 'default_password',
             'emulatePrepare' => true,
             'charset' => 'utf8',
             'tablePrefix' => 'tbl_',
-        ),
-        'log' => array(
+        ],
+        'log' => [
             'class' => 'CLogRouter',
-            'routes' => array(
-                array(
+            'routes' => [
+                [
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
-                )
-            ),
-        ),
-        'hash' => array('class' => 'Common\PBKDF2Hash'),
-        'random' => array('class' => 'Common\RandomString')
-    ),
+                ]
+            ],
+        ],
+        'hash' => ['class' => 'Common\PBKDF2Hash'],
+        'random' => ['class' => 'Common\RandomString']
+    ],
 
     // application-level parameters that can be accessed using Yii::app()->params['paramName']
     'params' => require(dirname(__FILE__) . '/params.php'),
     
-    'controllerMap' => array(
+    'controllerMap' => [
         'default' => 'application.controllers.AssetController',
-    ),
-);
+    ],
+];

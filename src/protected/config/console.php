@@ -2,31 +2,31 @@
 
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
-return array(
+return [
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'My Console Application',
 
     // preloading 'log' component
-    'preload'=>array('log'),
+    'preload'=>['log'],
 
-    'import'=>array(
+    'import'=>[
         'application.components.*',
         'application.models.*',
         'ext.giix-components.*',
-    ),
+    ],
     // application components
-    'components'=>array(
-        'db'=>array(
+    'components'=>[
+        'db' => [
             'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-        ),
-        'log'=>array(
+        ],
+        'log' => [
             'class'=>'CLogRouter',
-            'routes'=>array(
-                array(
+            'routes'=>[
+                [
                     'class'=>'CFileLogRoute',
                     'levels'=>'error, warning',
-                ),
-            ),
-        ),
-    ),
-);
+                ],
+            ],
+        ],
+    ],
+];

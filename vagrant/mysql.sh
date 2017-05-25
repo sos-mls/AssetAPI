@@ -7,6 +7,7 @@ sudo apt-get -y --force-yes install mysql-server libapache2-mod-auth-mysql php5-
 
 # Install Developer Schema
 sudo mysql --user="root" --password=$DEFAULT_PASSWORD < $SHELL_HOME/sql/asset_api.sql
+sudo mysql --user="root" --password=$DEFAULT_PASSWORD < $SHELL_HOME/sql/asset_api_test.sql
 
 # Set timeout for mysql
 sudo mysql_tzinfo_to_sql /usr/share/zoneinfo/|mysql --user="root" --password=$DEFAULT_PASSWORD mysql
