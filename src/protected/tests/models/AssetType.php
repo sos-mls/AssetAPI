@@ -19,7 +19,7 @@
 
 class AssetType_Test extends CDbTestCase
 {
-    const COMPARISON_DIRECTORY = 'protected/tests/test_comparison';
+    const COMPARISON_DIRECTORY = 'src/protected/tests/test_comparison';
 
     protected $fixtures=array(
         'asset_types'=>'AssetType'
