@@ -14,13 +14,13 @@
  *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
-class GarbageCollectionCommand extends CConsoleCommand 
+class GarbageCollectionCommand extends CConsoleCommand
 {
 
     /**
      * Runs the garbage collection function.
      */
-    public function run($args) 
+    public function run($args)
     {
         $this->runGarbageCollection();
     }
@@ -28,13 +28,14 @@ class GarbageCollectionCommand extends CConsoleCommand
     /**
      * Deletes all of the assets and their files.
      *
-     * 
+     * Goes through all of the current assets that are not used over
+     * a certain time period, deletes all of their files and then delete
+     * their instance in the DB.
      */
-    private function runGarbageCollection() 
+    private function runGarbageCollection()
     {
         $garbage_assets = Asset::model()->notUsedGarbage()->findAll();
-        foreach ($garbage_assets as $asset) 
-        {
+        foreach ($garbage_assets as $asset) {
             $asset->deleteFiles();
             $asset->delete();
         }
