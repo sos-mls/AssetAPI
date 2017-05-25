@@ -21,70 +21,70 @@
  */
 abstract class BaseImage extends GxActiveRecord {
 
-	public static function model($className=__CLASS__) {
-		return parent::model($className);
-	}
+    public static function model($className=__CLASS__) {
+        return parent::model($className);
+    }
 
-	public function tableName() {
-		return '{{image}}';
-	}
+    public function tableName() {
+        return '{{image}}';
+    }
 
-	public static function label($n = 1) {
-		return Yii::t('app', 'Image|Images', $n);
-	}
+    public static function label($n = 1) {
+        return Yii::t('app', 'Image|Images', $n);
+    }
 
-	public static function representingColumn() {
-		return 'file_name';
-	}
+    public static function representingColumn() {
+        return 'file_name';
+    }
 
-	public function rules() {
-		return array(
-			array('asset_id, file_name, file_size, width, height', 'required'),
-			array('asset_id, file_size, width, height', 'numerical', 'integerOnly'=>true),
-			array('file_name', 'length', 'max'=>256),
-			array('created_at', 'safe'),
-			array('created_at', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('image_id, asset_id, file_name, file_size, width, height, created_at', 'safe', 'on'=>'search'),
-		);
-	}
+    public function rules() {
+        return array(
+            array('asset_id, file_name, file_size, width, height', 'required'),
+            array('asset_id, file_size, width, height', 'numerical', 'integerOnly'=>true),
+            array('file_name', 'length', 'max'=>256),
+            array('created_at', 'safe'),
+            array('created_at', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('image_id, asset_id, file_name, file_size, width, height, created_at', 'safe', 'on'=>'search'),
+        );
+    }
 
-	public function relations() {
-		return array(
-			'asset' => array(self::BELONGS_TO, 'Asset', 'asset_id'),
-		);
-	}
+    public function relations() {
+        return array(
+            'asset' => array(self::BELONGS_TO, 'Asset', 'asset_id'),
+        );
+    }
 
-	public function pivotModels() {
-		return array(
-		);
-	}
+    public function pivotModels() {
+        return array(
+        );
+    }
 
-	public function attributeLabels() {
-		return array(
-			'image_id' => Yii::t('app', 'Image'),
-			'asset_id' => null,
-			'file_name' => Yii::t('app', 'File Name'),
-			'file_size' => Yii::t('app', 'File Size'),
-			'width' => Yii::t('app', 'Width'),
-			'height' => Yii::t('app', 'Height'),
-			'created_at' => Yii::t('app', 'Created At'),
-			'asset' => null,
-		);
-	}
+    public function attributeLabels() {
+        return array(
+            'image_id' => Yii::t('app', 'Image'),
+            'asset_id' => null,
+            'file_name' => Yii::t('app', 'File Name'),
+            'file_size' => Yii::t('app', 'File Size'),
+            'width' => Yii::t('app', 'Width'),
+            'height' => Yii::t('app', 'Height'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'asset' => null,
+        );
+    }
 
-	public function search() {
-		$criteria = new CDbCriteria;
+    public function search() {
+        $criteria = new CDbCriteria;
 
-		$criteria->compare('image_id', $this->image_id);
-		$criteria->compare('asset_id', $this->asset_id);
-		$criteria->compare('file_name', $this->file_name, true);
-		$criteria->compare('file_size', $this->file_size);
-		$criteria->compare('width', $this->width);
-		$criteria->compare('height', $this->height);
-		$criteria->compare('created_at', $this->created_at, true);
+        $criteria->compare('image_id', $this->image_id);
+        $criteria->compare('asset_id', $this->asset_id);
+        $criteria->compare('file_name', $this->file_name, true);
+        $criteria->compare('file_size', $this->file_size);
+        $criteria->compare('width', $this->width);
+        $criteria->compare('height', $this->height);
+        $criteria->compare('created_at', $this->created_at, true);
 
-		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
-		));
-	}
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
 }

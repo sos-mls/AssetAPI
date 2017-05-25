@@ -27,7 +27,7 @@ return [
         'gii' => [
             'class' => 'system.gii.GiiModule',
             'password' => 'here',
-            'ipFilters' => ['127.0.0.1','192.168.201.*', '10.0.2.*'], 
+            'ipFilters' => ['127.0.0.1','192.168.201.*', '10.0.2.*'],
             'generatorPaths' => [
                 'ext.giix-core', // giix generators
             ],
