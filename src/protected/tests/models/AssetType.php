@@ -54,6 +54,30 @@ class AssetType_Test extends CDbTestCase
             [
                 self::COMPARISON_DIRECTORY . '/default_image.png',
                 AssetType::IMAGE
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/big_buck_bunny.mp4',
+                AssetType::VIDEO
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/big_buck_bunny.ogv',
+                AssetType::VIDEO
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/big_buck_bunny.webm',
+                AssetType::VIDEO
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/sample_iTunes.mov',
+                AssetType::VIDEO
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/test-mpeg.mpg',
+                AssetType::VIDEO
+            ],
+            [
+                self::COMPARISON_DIRECTORY . '/eckroth-coffeehouse_conversation.talk',
+                AssetType::FILE
             ]
         ];
     }

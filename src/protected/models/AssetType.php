@@ -26,6 +26,8 @@ class AssetType extends BaseAssetType
     private static $_valid_video_types = [
         'video/mp4',
         'video/mpeg',
+        'application/ogg',
+        'video/webm',
         'video/quicktime'
     ];
 
