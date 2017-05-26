@@ -18,6 +18,7 @@ use Common\Reflection;
 
 class TestController extends CDbTestCase
 {
+    const COMPARISON_DIRECTORY = 'src/protected/tests/test_comparison';
 
     protected $controller_name;
 

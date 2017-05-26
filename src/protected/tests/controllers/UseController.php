@@ -18,8 +18,6 @@ use Common\Reflection;
 
 class UseController_Test extends TestController
 {
-    const COMPARISON_DIRECTORY = 'src/protected/tests/test_comparison';
-
     protected $fixtures=array(
         'asset_types'=>'AssetType'
     );
@@ -65,11 +63,16 @@ class UseController_Test extends TestController
         ];
     }
 
+    /**
+     * Contains an array of test files for uploading.
+     * 
+     * @return array An array of files
+     */
     public function input_actionAssetUse()
     {
         return [
             [
-                self::COMPARISON_DIRECTORY . '/contain_aspect_true.png'
+                TestController::COMPARISON_DIRECTORY . '/contain_aspect_true.png'
             ]
         ];
     }

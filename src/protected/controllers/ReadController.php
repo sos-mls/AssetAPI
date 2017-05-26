@@ -60,7 +60,9 @@ class ReadController extends ApiController
         if ($hash_id != "") {
             if (Image::model()->fileName($hash_id)->exists()) {
                 $absolute_file_path = Asset::getAssetDir() . $hash_id;
-                $this->setHeader($absolute_file_path);
+                var_dump(filesize($absolute_file_path));
+                die();
+                // $this->setHeader($absolute_file_path);
                 
                 echo file_get_contents($absolute_file_path);
             } else {
@@ -78,9 +80,11 @@ class ReadController extends ApiController
      */
     private function setHeader($absolute_file_path)
     {
-        header('Cache-control: max-age=' . (60*60*24*365));
-        header('Expires: ' . gmdate(DATE_RFC1123, time()+60*60*24*365));
-        header('Last-Modified: ' . gmdate(DATE_RFC1123, filemtime($absolute_file_path)));
-        header('Content-Type: ' . mime_content_type($absolute_file_path));
+        if ($this->generateHeader) {
+            header('Cache-control: max-age=' . (60*60*24*365));
+            header('Expires: ' . gmdate(DATE_RFC1123, time()+60*60*24*365));
+            header('Last-Modified: ' . gmdate(DATE_RFC1123, filemtime($absolute_file_path)));
+            header('Content-Type: ' . mime_content_type($absolute_file_path));   
+        }
     }
 }
