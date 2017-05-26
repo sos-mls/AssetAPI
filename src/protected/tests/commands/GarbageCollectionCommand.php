@@ -1,32 +1,25 @@
 <?php
 
 /**
- * Contains the CreateController_Test class.
+ * Contains the GarbageCollectionCommand_Test class.
  *
- * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
+ * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
+
+Yii::import('application.commands.GarbageCollectionCommand');
 
 use Common\Reflection;
 
 /**
- * CreateController_Test class. A PHPUnit Test case class.
+ * GarbageCollectionCommand_Test class. A PHPUnit Test case class.
  *
  * Tests image creation functions inside of the Create controller class.
  *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-class CreateController_Test extends TestController
+class GarbageCollectionCommand_Test extends TestController
 {
-
-    /**
-     * Sets the controller name
-     */
-    public function setUp()
-    {
-        $this->controller_name = 'CreateController';
-    }
-
     /**
      *
      *
@@ -42,7 +35,7 @@ class CreateController_Test extends TestController
      * 
      * @return array An array of files
      */
-    public function input_actionAssetCreate()
+    public function input_run()
     {
         return [
             [
@@ -62,24 +55,14 @@ class CreateController_Test extends TestController
      */
 
     /**
-     * Tests the actionIndex method errpr resonse.
-     */
-    public function test_actionIndexError()
-    {
-        $expected_output = "HTTP/1.1 424 \n" .
-            "Content-type: application/json\n" .
-            '{"errors":{"general":["Not a proper http method type, please send a FILE"]}}';
-
-        $this->assertControllerResponse('actionIndex',  '/create/', $expected_output);
-    }
-
-    /**
      * Adds a file to the $_FILE variable and calls the create controller
      * 
-     * @dataProvider input_actionAssetCreate
+     * @dataProvider input_run
      */
-    public function test_actionAssetCreate($file_path = "")
+    public function test_run($file_path = "")
     {
+        $garbage_collection = new GarbageCollectionCommand("some_name", "some_runner");
+
         $_FILES = [
             'file' => [
                 'tmp_name' => $file_path,
@@ -93,16 +76,22 @@ class CreateController_Test extends TestController
 
         $_SERVER['REDIRECT_URL'] = '/create/';
         ob_start();
-        $controller = new $this->controller_name(rand(0,1000));
-        Reflection::setProperty('generateHeader', $this->controller_name, $controller, false);
-        Reflection::callMethod('actionIndex', $this->controller_name, [], $controller);
+        $controller = new CreateController(rand(0,1000));
+        Reflection::setProperty('generateHeader', 'CreateController', $controller, false);
+        Reflection::callMethod('actionIndex', 'CreateController', [], $controller);
         $response = ob_get_contents();
         ob_end_clean();
         
         $json_response = str_replace("HTTP/1.1 200 OK\n", "", $response);
         $json_response = str_replace("Content-type: application/json\n", "", $json_response);
         $asset_json = json_decode($json_response);
-        
-        $this->assertTrue(Asset::model()->fileName($asset_json->public_url)->exists());
+
+        $asset = Asset::model()->fileName($asset_json->public_url)->find();
+        $asset->created_at = str_replace("+0000", "Z", date(DATE_ISO8601, getdate()[0] - 84600));
+        $asset->save();
+
+        $garbage_collection->run([]);
+
+        $this->assertFalse(Asset::model()->fileName($asset_json->public_url)->exists());
     }
 }
