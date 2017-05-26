@@ -64,17 +64,6 @@ class Image extends BaseImage
      */
 
     /**
-     * Filters criteria by asset_id.
-     * 
-     * @param  integer $assetID The primary key fo the asset.
-     * @return Asset          [description]
-     */
-    public function assetID($assetID) {
-        $this->getDbCriteria()->compare('t.asset_id', $ID);
-        return $this;
-    }
-
-    /**
      * Filters criteria by file_name.
      * 
      * @param  string $file_name The file name to filter by.
