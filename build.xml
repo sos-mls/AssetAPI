@@ -80,6 +80,8 @@
                 <exclude name="**/vendor/**" />
                 <exclude name="**/extensions/**" />
                 <exclude name="**/runtime/**" />
+                <exclude name="**/tests/**" />
+                <exclude name="**/_base/**" />
                 <modified />
             </fileset>
 
@@ -130,7 +132,7 @@
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-            <arg value="--ignore=vendor,extensions,runtime"/>
+            <arg value="--ignore=vendor,extensions,runtime,tests,views"/>
             <arg path="${basedir}/src/protected" />
         </exec>
 
@@ -146,6 +148,8 @@
             <arg path="${basedir}/build/phpmd.xml" />
             <arg value="--exclude" />
             <arg value="${basedir}/src/protected/vendor" />
+            <arg value="${basedir}/src/protected/models/_base" />
+            <arg value="${basedir}/src/protected/tests" />
         </exec>
 
         <property name="phpmd.done" value="true"/>
@@ -162,6 +166,8 @@
             <arg value="--reportfile=${basedir}/build/logs/pmd.xml" />
             <arg value="--exclude" />
             <arg value="${basedir}/src/protected/vendor" />
+            <arg value="${basedir}/src/protected/models/_base" />
+            <arg value="${basedir}/src/protected/tests" />
         </exec>
 
         <property name="phpmd.done" value="true"/>
@@ -172,7 +178,7 @@
             description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${phpcs}" taskname="phpcs">
             <arg value="--extensions=php" />
-            <arg value="--ignore=autoload.php,vendor,runtime,extensions" />
+            <arg value="--ignore=autoload.php,vendor,runtime,extensions,tests,views" />
             <arg path="${basedir}/src/protected" />
         </exec>
 
@@ -188,7 +194,7 @@
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
             <arg value="--standard=${basedir}/build/phpcs.xml" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=autoload.php,vendor,runtime,extensions" />
+            <arg value="--ignore=autoload.php,vendor,runtime,extensions,tests,views,_base" />
             <arg path="${basedir}/src/protected" />
         </exec>
 

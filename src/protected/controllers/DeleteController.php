@@ -14,7 +14,7 @@ use Common\ApiController;
  * The DeleteController states which assets are to be collected in garbage.
  *
  * Places assets in a listing of assets that denote deletion.
- * 
+ *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 class DeleteController extends ApiController
@@ -26,10 +26,11 @@ class DeleteController extends ApiController
      *
      * An asset is only removed through garbage collection, the delete/asset process is there
      * to flag the asset for garbage collection.
-     * 
+     *
      * @return JSON If the file has been deleted or not.
      */
-    public function actionAsset() {
+    public function actionAsset()
+    {
         $hash_id = $this->getHashID('delete/asset');
         if ($hash_id !== "") {
             if (Asset::model()->fileName($hash_id)->exists()) {

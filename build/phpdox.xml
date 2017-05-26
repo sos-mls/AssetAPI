@@ -42,6 +42,8 @@
         <include mask="*.php" />
         <exclude mask="**extensions**" />
         <exclude mask="**runtime**" />
+        <exclude mask="**_base**" />
+        <exclude mask="**tests**" />
         <exclude mask="**vendor**" />
         <!--  How to handle inheritance -->
         <inheritance resolve="true">

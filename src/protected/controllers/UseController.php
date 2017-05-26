@@ -15,7 +15,7 @@ use Common\ApiController;
  * The UseController determines what assets are to be saved in the system.
  *
  * Keeps track of assets that are used if the assets have not been deleted yet.
- * 
+ *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 class UseController extends ApiController
@@ -24,10 +24,11 @@ class UseController extends ApiController
     /**
      * Marks the given file name as IS_USED.
      *
-     * Checks to see that the asset exists, if so then the asset will not be deleted in 
+     * Checks to see that the asset exists, if so then the asset will not be deleted in
      * the garbage collection process and stored until the asset is to be deleted.
      */
-    public function actionAsset() {
+    public function actionAsset()
+    {
         $hash_id = $this->getHashID('use/asset');
         if ($hash_id !== "") {
             if (Asset::model()->fileName($hash_id)->exists()) {

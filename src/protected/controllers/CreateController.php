@@ -16,7 +16,7 @@ use Common\File\NotSafeException;
 use Common\File\NotValidException;
 
 /**
- * The CreateController Saves the current file 
+ * The CreateController Saves the current file
  *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
@@ -30,13 +30,13 @@ class CreateController extends ApiController
      *
      * @return JSON     The name of the file or the error if one occured.
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         if (!empty($_FILES)) {
             try {
-
                 // Create file here
                 $action_results = File_Image::forge(
-                    $_FILES['file']['tmp_name'], 
+                    $_FILES['file']['tmp_name'],
                     Yii::app()->params->asset_library['valid_types'],
                     Yii::app()->params->asset_library['actions']
                 )->act();
@@ -70,7 +70,8 @@ class CreateController extends ApiController
      *
      * @return Asset The asset created from the file given.
      */
-    private function createAsset() {
+    private function createAsset()
+    {
         $asset_type = AssetType::getType($_FILES['file']['tmp_name']);
         $destination = Asset::generateDestination();
         $name = Asset::getAssetName($destination);
@@ -95,7 +96,8 @@ class CreateController extends ApiController
      * @param  Asset  &$asset         A reference to the created Asset.
      * @param  array  $action_results The results of the action on the file.
      */
-    private function createImages(Asset &$asset, array $action_results = []) {
+    private function createImages(Asset &$asset, array $action_results = [])
+    {
         foreach ($action_results as $action_result) {
             $destination = Asset::generateDestination();
             $name = Asset::getAssetName($destination);

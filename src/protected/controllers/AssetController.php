@@ -13,7 +13,7 @@ use Common\ApiController;
  *
  * It sends the user to the given pages to get more information about how to utilize
  * the Asset Api.
- * 
+ *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 class AssetController extends ApiController
@@ -25,7 +25,8 @@ class AssetController extends ApiController
      * how to utilize the AssetApi, Configuration of the AssetApi, and Recommendations
      * for integrating the assetApi into a server network.
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->renderJSON([
             'info' => 'https://bitbucket.org/scooblyboo/assetapi'
         ]);

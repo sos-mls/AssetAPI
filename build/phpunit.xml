@@ -23,11 +23,15 @@
 
     <filter>
         <whitelist>
+            <directory>../src/protected/commands</directory>
             <directory>../src/protected/components</directory>
             <directory>../src/protected/controllers</directory>
             <directory>../src/protected/models</directory>
             <directory>../src/protected/traits</directory>
         </whitelist>
+        <blacklist>
+            <directory>../src/protected/models/_base</directory>
+        </blacklist>
     </filter>
 
 </phpunit>

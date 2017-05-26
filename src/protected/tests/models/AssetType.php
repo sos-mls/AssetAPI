@@ -100,7 +100,8 @@ class AssetType_Test extends CDbTestCase
      * @param  string  $path          The file path.
      * @param  array   $expected_type The expected Asset Type.
      */
-    public function test_getType($path, $expected_type) {
+    public function test_getType($path, $expected_type)
+    {
         $asset_type = AssetType::getType($path);
         $this->assertEquals($expected_type, $asset_type->asset_type);
     }
