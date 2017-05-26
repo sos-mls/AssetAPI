@@ -102,7 +102,8 @@ class CreateController_Test extends TestController
         
         $json_response = str_replace("HTTP/1.1 200 OK\n", "", $response);
         $json_response = str_replace("Content-type: application/json\n", "", $json_response);
-        $this->assertTrue(Asset::model()->fileName(json_decode($json_response)->public_url)->exists());
+        $asset_json = json_decode($json_response);
+        $this->assertTrue(Asset::model()->fileName($asset_json->public_url)->exists());
 
     }
 }

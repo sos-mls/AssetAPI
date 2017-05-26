@@ -60,9 +60,6 @@ class ReadController extends ApiController
         if ($hash_id != "") {
             if (Image::model()->fileName($hash_id)->exists()) {
                 $absolute_file_path = Asset::getAssetDir() . $hash_id;
-                var_dump(filesize($absolute_file_path));
-                die();
-                // $this->setHeader($absolute_file_path);
                 
                 echo file_get_contents($absolute_file_path);
             } else {
