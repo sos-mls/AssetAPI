@@ -32,7 +32,7 @@ class DeleteController extends ApiController
     public function actionAsset()
     {
         $hash_id = $this->getHashID('delete/asset');
-        if ($hash_id !== "") {
+        if ($hash_id != "" ) {
             if (Asset::model()->fileName($hash_id)->exists()) {
                 $asset = Asset::model()->fileName($hash_id)->find();
 

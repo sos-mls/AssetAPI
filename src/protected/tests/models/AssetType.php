@@ -3,17 +3,14 @@
 /**
  * Contains the AssetType_Test class.
  * 
- * @package Test\Models
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
-
-// namespace Test\Models;
 
 /**
  * AssetType_Test class. A PHPUnit Test case class.
  *
  * Tests specific functions inside of the AssetType model class.
- * 
+ *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 

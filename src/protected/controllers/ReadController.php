@@ -33,7 +33,7 @@ class ReadController extends ApiController
     public function actionAsset()
     {
         $hash_id = $this->getHashID('read/asset');
-        if ($hash_id !== "") {
+        if ($hash_id != "") {
             if (Asset::model()->fileName($hash_id)->exists()) {
                 $asset = Asset::model()->fileName($hash_id)->find();
                 $this->renderJSON($asset->toArray());
@@ -57,7 +57,7 @@ class ReadController extends ApiController
     public function actionImage()
     {
         $hash_id = $this->getHashID('read/image');
-        if ($hash_id !== "") {
+        if ($hash_id != "") {
             if (Image::model()->fileName($hash_id)->exists()) {
                 $absolute_file_path = Asset::getAssetDir() . $hash_id;
                 $this->setHeader($absolute_file_path);
