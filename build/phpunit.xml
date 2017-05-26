@@ -11,6 +11,7 @@
 	<testsuites>
         <testsuite name="assets-api">
             <directory suffix=".php">../src/protected/tests/models</directory>
+            <directory suffix=".php">../src/protected/tests/controllers</directory>
         </testsuite>
     </testsuites>
 
