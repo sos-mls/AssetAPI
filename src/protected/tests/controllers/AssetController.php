@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-use Common\Reflection;
-
 /**
  * AssetController_Test class. A PHPUnit Test case class.
  *
@@ -16,8 +14,17 @@ use Common\Reflection;
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-class AssetController_Test extends CDbTestCase
+class AssetController_Test extends TestController
 {
+
+    /**
+     * Sets the controller name
+     */
+    public function setUp()
+    {
+        $this->controller_name = 'AssetController';
+    }
+
     /**
      *
      *
@@ -33,14 +40,10 @@ class AssetController_Test extends CDbTestCase
      */
     public function test_actionIndex()
     {
-        $this->expectOutputString(
-            "HTTP/1.1 200 OK\n" .
+        $expectedOutput = "HTTP/1.1 200 OK\n" .
             "Content-type: application/json\n" .
-            '{"info":"https:\/\/bitbucket.org\/scooblyboo\/assetapi"}'
-        );
+            '{"info":"https:\/\/bitbucket.org\/scooblyboo\/assetapi"}';
 
-        $assetController = new AssetController(rand(0,1000));
-        Reflection::setProperty('generateHeader', 'AssetController', $assetController, false);
-        $assetController->actionIndex();
+        $this->assertControllerResponse('actionIndex', '/asset/', $expectedOutput);
     }
 }

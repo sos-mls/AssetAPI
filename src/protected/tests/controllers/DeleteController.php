@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-use Common\Reflection;
-
 /**
  * DeleteController_Test class. A PHPUnit Test case class.
  *
@@ -16,8 +14,16 @@ use Common\Reflection;
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-class DeleteController_Test extends CDbTestCase
+class DeleteController_Test extends TestController
 {
+
+    /**
+     * Sets the controller name
+     */
+    public function setUp()
+    {
+        $this->controller_name = 'DeleteController';
+    }
 
 
     /**
@@ -68,18 +74,11 @@ class DeleteController_Test extends CDbTestCase
      *
      * @dataProvider input_actionAssetError
      * 
-     * @param  string $method          The action to call in the controller.
      * @param  string $redirect_url    The url that the user is coming from.
      * @param  string $expected_output The expected JSON output
      */
     public function test_actionAssetError($redirect_url = "", $expected_output = "")
     {
-        $_SERVER['REDIRECT_URL'] = $redirect_url;
-
-        $this->expectOutputString($expected_output);
-
-        $deleteController = new DeleteController(rand(0,1000));
-        Reflection::setProperty('generateHeader', 'DeleteController', $deleteController, false);
-        $deleteController->actionAsset();
+        $this->assertControllerResponse('actionAsset',  $redirect_url, $expected_output);
     }
 }

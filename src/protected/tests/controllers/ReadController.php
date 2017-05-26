@@ -16,8 +16,17 @@ use Common\Reflection;
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-class ReadController_Test extends CDbTestCase
+class ReadController_Test extends TestController
 {
+
+    /**
+     * Sets the controller name
+     */
+    public function setUp()
+    {
+        $this->controller_name = 'ReadController';
+    }
+
     /**
      *
      *
@@ -88,12 +97,6 @@ class ReadController_Test extends CDbTestCase
      */
     public function test_actionMethodError($method = "", $redirect_url = "", $expected_output = "")
     {
-        $_SERVER['REDIRECT_URL'] = $redirect_url;
-
-        $this->expectOutputString($expected_output);
-
-        $readController = new ReadController(rand(0,1000));
-        Reflection::setProperty('generateHeader', 'ReadController', $readController, false);
-        Reflection::callMethod($method, 'ReadController', [], $readController);
+        $this->assertControllerResponse($method,  $redirect_url, $expected_output);
     }
 }

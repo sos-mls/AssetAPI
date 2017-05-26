@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-use Common\Reflection;
-
 /**
  * CreateController_Test class. A PHPUnit Test case class.
  *
@@ -16,8 +14,17 @@ use Common\Reflection;
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-class CreateController_Test extends CDbTestCase
+class CreateController_Test extends TestController
 {
+
+    /**
+     * Sets the controller name
+     */
+    public function setUp()
+    {
+        $this->controller_name = 'CreateController';
+    }
+
     /**
      *
      *
@@ -29,18 +36,14 @@ class CreateController_Test extends CDbTestCase
      */
 
     /**
-     * Tests the actionIndex method.
+     * Tests the actionIndex method errpr resonse.
      */
-    public function test_actionIndexUnproper()
+    public function test_actionIndexError()
     {
-        $this->expectOutputString(
-            "HTTP/1.1 424 \n" .
+        $expected_output = "HTTP/1.1 424 \n" .
             "Content-type: application/json\n" .
-            '{"errors":{"general":["Not a proper http method type, please send a FILE"]}}'
-        );
+            '{"errors":{"general":["Not a proper http method type, please send a FILE"]}}';
 
-        $createController = new CreateController(rand(0,1000));
-        Reflection::setProperty('generateHeader', 'CreateController', $createController, false);
-        $createController->actionIndex();
+        $this->assertControllerResponse('actionIndex',  '/create/', $expected_output);
     }
 }
