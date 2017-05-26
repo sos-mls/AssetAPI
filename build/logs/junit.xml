@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="assets-api" tests="19" assertions="19" failures="0" errors="0" time="0.200235">
-    <testsuite name="AssetType_Test" file="/var/www/asset_api/src/protected/tests/models/AssetType.php" tests="9" assertions="9" failures="0" errors="0" time="0.169169">
-      <testsuite name="AssetType_Test::test_getType" tests="9" assertions="9" failures="0" errors="0" time="0.169169">
-        <testcase name="test_getType with data set #0" assertions="1" time="0.068930"/>
-        <testcase name="test_getType with data set #1" assertions="1" time="0.009988"/>
-        <testcase name="test_getType with data set #2" assertions="1" time="0.013024"/>
-        <testcase name="test_getType with data set #3" assertions="1" time="0.012414"/>
-        <testcase name="test_getType with data set #4" assertions="1" time="0.010525"/>
-        <testcase name="test_getType with data set #5" assertions="1" time="0.010441"/>
-        <testcase name="test_getType with data set #6" assertions="1" time="0.014489"/>
-        <testcase name="test_getType with data set #7" assertions="1" time="0.010216"/>
-        <testcase name="test_getType with data set #8" assertions="1" time="0.019142"/>
+  <testsuite name="assets-api" tests="20" assertions="21" failures="0" errors="0" time="0.222391">
+    <testsuite name="AssetType_Test" file="/var/www/asset_api/src/protected/tests/models/AssetType.php" tests="9" assertions="9" failures="0" errors="0" time="0.164369">
+      <testsuite name="AssetType_Test::test_getType" tests="9" assertions="9" failures="0" errors="0" time="0.164369">
+        <testcase name="test_getType with data set #0" assertions="1" time="0.054959"/>
+        <testcase name="test_getType with data set #1" assertions="1" time="0.011184"/>
+        <testcase name="test_getType with data set #2" assertions="1" time="0.014027"/>
+        <testcase name="test_getType with data set #3" assertions="1" time="0.011834"/>
+        <testcase name="test_getType with data set #4" assertions="1" time="0.019180"/>
+        <testcase name="test_getType with data set #5" assertions="1" time="0.010612"/>
+        <testcase name="test_getType with data set #6" assertions="1" time="0.012321"/>
+        <testcase name="test_getType with data set #7" assertions="1" time="0.013882"/>
+        <testcase name="test_getType with data set #8" assertions="1" time="0.016370"/>
       </testsuite>
     </testsuite>
-    <testsuite name="AssetController_Test" file="/var/www/asset_api/src/protected/tests/controllers/AssetController.php" tests="1" assertions="1" failures="0" errors="0" time="0.007191">
-      <testcase name="test_actionIndex" class="AssetController_Test" file="/var/www/asset_api/src/protected/tests/controllers/AssetController.php" line="41" assertions="1" time="0.007191"/>
+    <testsuite name="AssetController_Test" file="/var/www/asset_api/src/protected/tests/controllers/AssetController.php" tests="1" assertions="1" failures="0" errors="0" time="0.009135">
+      <testcase name="test_actionIndex" class="AssetController_Test" file="/var/www/asset_api/src/protected/tests/controllers/AssetController.php" line="41" assertions="1" time="0.009135"/>
     </testsuite>
-    <testsuite name="CreateController_Test" file="/var/www/asset_api/src/protected/tests/controllers/CreateController.php" tests="1" assertions="1" failures="0" errors="0" time="0.004445">
-      <testcase name="test_actionIndexError" class="CreateController_Test" file="/var/www/asset_api/src/protected/tests/controllers/CreateController.php" line="41" assertions="1" time="0.004445"/>
+    <testsuite name="CreateController_Test" file="/var/www/asset_api/src/protected/tests/controllers/CreateController.php" tests="1" assertions="1" failures="0" errors="0" time="0.003455">
+      <testcase name="test_actionIndexError" class="CreateController_Test" file="/var/www/asset_api/src/protected/tests/controllers/CreateController.php" line="41" assertions="1" time="0.003455"/>
     </testsuite>
-    <testsuite name="DeleteController_Test" file="/var/www/asset_api/src/protected/tests/controllers/DeleteController.php" tests="2" assertions="2" failures="0" errors="0" time="0.006112">
-      <testsuite name="DeleteController_Test::test_actionAssetError" tests="2" assertions="2" failures="0" errors="0" time="0.006112">
-        <testcase name="test_actionAssetError with data set #0" assertions="1" time="0.005576"/>
-        <testcase name="test_actionAssetError with data set #1" assertions="1" time="0.000536"/>
+    <testsuite name="DeleteController_Test" file="/var/www/asset_api/src/protected/tests/controllers/DeleteController.php" tests="2" assertions="2" failures="0" errors="0" time="0.006710">
+      <testsuite name="DeleteController_Test::test_actionAssetError" tests="2" assertions="2" failures="0" errors="0" time="0.006710">
+        <testcase name="test_actionAssetError with data set #0" assertions="1" time="0.005509"/>
+        <testcase name="test_actionAssetError with data set #1" assertions="1" time="0.001201"/>
       </testsuite>
     </testsuite>
-    <testsuite name="ReadController_Test" file="/var/www/asset_api/src/protected/tests/controllers/ReadController.php" tests="4" assertions="4" failures="0" errors="0" time="0.009450">
-      <testsuite name="ReadController_Test::test_actionMethodError" tests="4" assertions="4" failures="0" errors="0" time="0.009450">
-        <testcase name="test_actionMethodError with data set #0" assertions="1" time="0.003137"/>
-        <testcase name="test_actionMethodError with data set #1" assertions="1" time="0.000607"/>
-        <testcase name="test_actionMethodError with data set #2" assertions="1" time="0.005056"/>
-        <testcase name="test_actionMethodError with data set #3" assertions="1" time="0.000650"/>
+    <testsuite name="ReadController_Test" file="/var/www/asset_api/src/protected/tests/controllers/ReadController.php" tests="4" assertions="4" failures="0" errors="0" time="0.008880">
+      <testsuite name="ReadController_Test::test_actionMethodError" tests="4" assertions="4" failures="0" errors="0" time="0.008880">
+        <testcase name="test_actionMethodError with data set #0" assertions="1" time="0.002457"/>
+        <testcase name="test_actionMethodError with data set #1" assertions="1" time="0.000614"/>
+        <testcase name="test_actionMethodError with data set #2" assertions="1" time="0.005177"/>
+        <testcase name="test_actionMethodError with data set #3" assertions="1" time="0.000632"/>
       </testsuite>
     </testsuite>
-    <testsuite name="UseController_Test" file="/var/www/asset_api/src/protected/tests/controllers/UseController.php" tests="2" assertions="2" failures="0" errors="0" time="0.003868">
-      <testsuite name="UseController_Test::test_actionAssetError" tests="2" assertions="2" failures="0" errors="0" time="0.003868">
-        <testcase name="test_actionAssetError with data set #0" assertions="1" time="0.003112"/>
-        <testcase name="test_actionAssetError with data set #1" assertions="1" time="0.000756"/>
+    <testsuite name="UseController_Test" file="/var/www/asset_api/src/protected/tests/controllers/UseController.php" tests="3" assertions="4" failures="0" errors="0" time="0.029841">
+      <testsuite name="UseController_Test::test_actionAssetError" tests="2" assertions="2" failures="0" errors="0" time="0.003622">
+        <testcase name="test_actionAssetError with data set #0" assertions="1" time="0.003092"/>
+        <testcase name="test_actionAssetError with data set #1" assertions="1" time="0.000530"/>
+      </testsuite>
+      <testsuite name="UseController_Test::test_actionAssetUse" tests="1" assertions="2" failures="0" errors="0" time="0.026219">
+        <testcase name="test_actionAssetUse with data set #0" assertions="2" time="0.026219"/>
       </testsuite>
     </testsuite>
   </testsuite>

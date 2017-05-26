@@ -18,6 +18,11 @@ use Common\Reflection;
 
 class UseController_Test extends TestController
 {
+    const COMPARISON_DIRECTORY = 'src/protected/tests/test_comparison';
+
+    protected $fixtures=array(
+        'asset_types'=>'AssetType'
+    );
 
     /**
      * Sets the controller name
@@ -60,6 +65,15 @@ class UseController_Test extends TestController
         ];
     }
 
+    public function input_actionAssetUse()
+    {
+        return [
+            [
+                self::COMPARISON_DIRECTORY . '/contain_aspect_true.png'
+            ]
+        ];
+    }
+
     /**
      *
      *
@@ -81,5 +95,34 @@ class UseController_Test extends TestController
     public function test_actionAssetError($redirect_url = "", $expected_output = "")
     {
         $this->assertControllerResponse('actionAsset',  $redirect_url, $expected_output);
+    }
+
+    /**
+     * Creates an asset, calls the use controller and confirms the response along the used asset.
+     * 
+     * @dataProvider input_actionAssetUse
+     */
+    public function test_actionAssetUse($file_path = "")
+    {
+        $asset_type = AssetType::getType($file_path);
+        $destination = Asset::generateDestination();
+        $name = Asset::getAssetName($destination);
+
+        $asset = new Asset();
+        $asset->asset_type_id = $asset_type->asset_type_id;
+        $asset->file_name = $name;
+        $asset->uploaded_name = "Hello";
+        $asset->created_at = str_replace("+0000", "Z", date(DATE_ISO8601, getdate()[0]));
+        $asset->save();
+
+        $expected_output = "HTTP/1.1 200 OK\n" .
+                "Content-type: application/json\n" .
+                '{"success":"Asset is now used."}';
+
+        $this->assertControllerResponse('actionAsset',  '/use/asset/' . $name, $expected_output);
+
+        $asset = Asset::model()->fileName($name)->find();
+
+        $this->assertEquals(Asset::IS_USED, $asset->is_used);
     }
 }
