@@ -144,17 +144,6 @@ class Asset extends BaseAsset
      *
      * 
      */
-    
-    /**
-     * Filters criteria by ID.
-     * 
-     * @param  integer $ID The ID to filter by.
-     * @return Asset       A reference to this.
-     */
-    public function ID($ID) {
-        $this->getDbCriteria()->compare('t.asset_id', $ID);
-        return $this;
-    }
 
     /**
      * Filters criteria by file_name.

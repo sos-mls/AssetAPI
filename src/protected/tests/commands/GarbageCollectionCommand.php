@@ -77,7 +77,7 @@ class GarbageCollectionCommand_Test extends TestController
         $_SERVER['REDIRECT_URL'] = '/create/';
         ob_start();
         $controller = new CreateController(rand(0,1000));
-        Reflection::setProperty('generateHeader', 'CreateController', $controller, false);
+        Reflection::setProperty('allowGenerateHeader', 'CreateController', $controller, false);
         Reflection::callMethod('actionIndex', 'CreateController', [], $controller);
         $response = ob_get_contents();
         ob_end_clean();

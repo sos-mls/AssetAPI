@@ -40,7 +40,7 @@ class TestController extends CDbTestCase
         $this->expectOutputString($expected_output);
 
         $controller = new $this->controller_name(rand(0,1000));
-        Reflection::setProperty('generateHeader', $this->controller_name, $controller, false);
+        Reflection::setProperty('allowGenerateHeader', $this->controller_name, $controller, false);
         Reflection::callMethod($method, $this->controller_name, [], $controller);
     }
 }
