@@ -208,8 +208,6 @@ class ReadController_Test extends TestController
         $response = ob_get_contents();
         ob_end_clean();
 
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->assertContains(file_get_contents(Asset::getAssetDir() . $image->file_name), $response);
     }
 }
