@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-Yii::import('application.traits.ErrorResponse');
-
 use Common\ApiController;
 
 /**
@@ -19,7 +17,6 @@ use Common\ApiController;
  */
 class UseController extends ApiController
 {
-    use ErrorResponse;
     /**
      * Marks the given file name as IS_USED.
      *
@@ -40,10 +37,10 @@ class UseController extends ApiController
                     'success' => "Asset is now used."
                 ]);
             } else {
-                $this->error_response("Asset not found.");
+                $this->renderJSONError("Asset not found.");
             }
         } else {
-            $this->error_response("Please send the asset file_name");
+            $this->renderJSONError("Please send the asset file_name");
         }
     }
 }

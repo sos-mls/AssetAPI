@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-Yii::import('application.traits.ErrorResponse');
-
 use Common\ApiController;
 
 /**
@@ -21,8 +19,6 @@ use Common\ApiController;
  */
 class ReadController extends ApiController
 {
-    use ErrorResponse;
-
     /**
      * Gets Asset information about the requested file.
      *
@@ -38,10 +34,10 @@ class ReadController extends ApiController
                 $asset = Asset::model()->fileName($hash_id)->find();
                 $this->renderJSON($asset->toArray());
             } else {
-                $this->error_response("Asset not found.");
+                $this->renderJSONError("Asset not found.");
             }
         } else {
-            $this->error_response("Not a proper http method type, please send a GET with a name");
+            $this->renderJSONError("Not a proper http method type, please send a GET with a name");
         }
     }
 
@@ -64,10 +60,10 @@ class ReadController extends ApiController
                 
                 echo file_get_contents($absolute_file_path);
             } else {
-                $this->error_response("Image not found.");
+                $this->renderJSONError("Image not found.");
             }
         } else {
-            $this->error_response("Not a proper http method type, please send a GET with a name");
+            $this->renderJSONError("Not a proper http method type, please send a GET with a name");
         }
     }
 

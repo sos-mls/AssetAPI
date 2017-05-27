@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-Yii::import('application.traits.ErrorResponse');
-
 use Common\ApiController;
 use Asset\Action\Image as Action_Image;
 use Asset\File\Image as File_Image;
@@ -22,8 +20,6 @@ use Common\File\NotValidException;
  */
 class CreateController extends ApiController
 {
-    use ErrorResponse;
-
     /**
      * Saves the given file to the local assets directory, with a random filename associated
      * with it. It then returns the random file name, or if the file could not have been saved.
@@ -55,10 +51,10 @@ class CreateController extends ApiController
                     ]);
                 }
             } catch (Exception $e) {
-                $this->error_response($e->getTrace(), 500);
+                $this->renderJSONError($e->getTrace(), 500);
             }
         } else {
-            $this->error_response("Not a proper http method type, please send a FILE");
+            $this->renderJSONError("Not a proper http method type, please send a FILE");
         }
     }
 
@@ -103,7 +99,7 @@ class CreateController extends ApiController
             $name = Asset::getAssetName($destination);
 
             if (!rename($action_result[Action_Image::PATH_KEY], $destination)) {
-                $this->error_response("Could not save the image. Please Try again.");
+                $this->renderJSONError("Could not save the image. Please Try again.");
             }
 
             $image = new Image();

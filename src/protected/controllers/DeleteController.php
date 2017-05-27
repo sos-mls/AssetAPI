@@ -6,8 +6,6 @@
  * @author  Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-Yii::import('application.traits.ErrorResponse');
-
 use Common\ApiController;
 
 /**
@@ -19,8 +17,6 @@ use Common\ApiController;
  */
 class DeleteController extends ApiController
 {
-    use ErrorResponse;
-
     /**
      * Goes to remove the asset from the current DB.
      *
@@ -43,10 +39,10 @@ class DeleteController extends ApiController
                     'success' => "Asset will be deleted."
                 ]);
             } else {
-                $this->error_response("Asset not found.");
+                $this->renderJSONError("Asset not found.");
             }
         } else {
-            $this->error_response("Not a proper http method type, please send the asset file_name");
+            $this->renderJSONError("Not a proper http method type, please send the asset file_name");
         }
     }
 }
