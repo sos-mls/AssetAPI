@@ -59,7 +59,7 @@ class ReadController_Test extends TestController
                 "/read/asset",
                 "HTTP/1.1 424 \n" .
                 "Content-type: application/json\n" .
-                '{"errors":{"general":["Not a proper http method type, please send a GET with a name"]}}'
+                '{"errors":{"general":["Please send the asset file_name"]}}'
             ],
             [
                 "actionImage",
@@ -73,7 +73,7 @@ class ReadController_Test extends TestController
                 "/read/image",
                 "HTTP/1.1 424 \n" .
                 "Content-type: application/json\n" .
-                '{"errors":{"general":["Not a proper http method type, please send a GET with a name"]}}'
+                '{"errors":{"general":["Please send the image file_name"]}}'
             ]
         ];
     }

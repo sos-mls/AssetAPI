@@ -42,7 +42,7 @@ class DeleteController extends ApiController
                 $this->renderJSONError("Asset not found.");
             }
         } else {
-            $this->renderJSONError("Not a proper http method type, please send the asset file_name");
+            $this->renderJSONError("Please send the asset file_name");
         }
     }
 }

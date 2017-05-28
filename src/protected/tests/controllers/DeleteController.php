@@ -58,7 +58,7 @@ class DeleteController_Test extends TestController
                 "/delete/asset",
                 "HTTP/1.1 424 \n" .
                 "Content-type: application/json\n" .
-                '{"errors":{"general":["Not a proper http method type, please send the asset file_name"]}}'
+                '{"errors":{"general":["Please send the asset file_name"]}}'
             ]
         ];
     }

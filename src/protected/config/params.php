@@ -6,7 +6,7 @@ use Asset\Action\Image as Action_Image;
 
 return [
     // this is displayed in the header section
-    'title' => 'Skeleton',
+    'title' => 'Asset Api',
 
     // the login duration when a user selects 'remember me'
     'loginDuration' => 3600 * 24 * 30, // 30 days
@@ -15,12 +15,12 @@ return [
     'adminEmail' => 'services@skeleton.com',
 
     // the copyright information displayed in the footer section
-    'copyrightInfo' => 'Copyright &copy; 2016 by Sale Cents',
+    'copyrightInfo' => 'Copyright &copy; 2016 by Asset Api',
 
     // The date format used by the database
     'dbDateFormat' => 'Y-m-d H:i:s',
 
-    // 'global_root_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/' : '',
+    'global_root_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/' : '',
 
     'local_asset_dir' => (getenv("DOCUMENT_ROOT") ? getenv("DOCUMENT_ROOT") : realpath(dirname(__FILE__) . '/../..')) . '/assets/',
 

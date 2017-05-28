@@ -37,7 +37,7 @@ class ReadController extends ApiController
                 $this->renderJSONError("Asset not found.");
             }
         } else {
-            $this->renderJSONError("Not a proper http method type, please send a GET with a name");
+            $this->renderJSONError("Please send the asset file_name");
         }
     }
 
@@ -63,7 +63,7 @@ class ReadController extends ApiController
                 $this->renderJSONError("Image not found.");
             }
         } else {
-            $this->renderJSONError("Not a proper http method type, please send a GET with a name");
+            $this->renderJSONError("Please send the image file_name");
         }
     }
 
