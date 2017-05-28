@@ -8,7 +8,6 @@
 
 Yii::import('application.models._base.BaseAsset');
 
-
 /**
  * The Asset class.
  *
@@ -31,32 +30,39 @@ class Asset extends BaseAsset
      * 
      */
 
-    public static function model($className=__CLASS__) {
+    public static function model($className=__CLASS__)
+    {
         return parent::model($className);
     }
 
     /**
      * Gets the asset directory for saving assets locally.
+     *
      * @return string   The local dir for assets
      */
-    public static function getAssetDir() {
+    public static function getAssetDir()
+    {
         return str_replace('//', '/', Yii::app()->params->local_asset_dir);
     }
 
     /**
      * Gets the assets name from the directory given.
+     *
      * @param  string $destination The destination or location of the asset
      * @return string              The name of the asset
      */
-    public static function getAssetName($destination) {
+    public static function getAssetName($destination)
+    {
         return str_replace(Asset::getAssetDir(), "", $destination);
     }
 
     /**
      * Generates a destination for the Asset.
+     *
      * @return string The destition of the file on the server
      */
-    public static function generateDestination() {
+    public static function generateDestination()
+    {
         $name = str_replace('/', '_', Yii::app()->random->fileName());
         return self::getAssetDir() . $name;
     }
@@ -71,10 +77,11 @@ class Asset extends BaseAsset
 
     /**
      * Gets the URL to the asset.
-     * 
+     *
      * @return string   The asset URL.
      */
-    public function getURL() {
+    public function getURL()
+    {
         return Yii::app()->params->relative_asset_dir . $this->file_name;
     }
 
@@ -83,10 +90,11 @@ class Asset extends BaseAsset
      *
      * The asset contains not only information about its "self" but also all of the
      * files assocaited with it.
-     * 
+     *
      * @return array All of the asset information.
      */
-    public function toArray() {
+    public function toArray()
+    {
         $file_array = $this->getFiles();
         $file_array_key = $this->assetType->asset_type . 's';
 
@@ -106,10 +114,11 @@ class Asset extends BaseAsset
      *
      * If the file type is of an image it gets all of the images associated with the
      * asset, otherwise it returns a empty array.
-     * 
+     *
      * @return array All of the files associated with the asset.
      */
-    public function getFiles() {
+    public function getFiles()
+    {
         $files = [];
 
         if ($this->assetType->asset_type == AssetType::IMAGE) {
@@ -127,7 +136,8 @@ class Asset extends BaseAsset
      * Goes through all of the current files assocaited with this asset and unlinks the
      * file from the server and deletes its database instance.
      */
-    public function deleteFiles() {
+    public function deleteFiles()
+    {
         if ($this->assetType->asset_type == AssetType::IMAGE) {
             foreach ($this->images as $image) {
                 $absolute_file_path = self::getAssetDir() . $image->file_name;
@@ -142,26 +152,28 @@ class Asset extends BaseAsset
      *
      * Scopes
      *
-     * 
+     *
      */
 
     /**
      * Filters criteria by file_name.
-     * 
+     *
      * @param  string $file_name The file name to filter by.
      * @return Asset             A reference to this.
      */
-    public function fileName($file_name) {
+    public function fileName($file_name)
+    {
         $this->getDbCriteria()->compare('t.file_name', $file_name);
         return $this;
     }
 
     /**
      * Filters the assets that are older than a day old and have not been used yet.
-     * 
+     *
      * @return Asset A reference to this.
      */
-    public function notUsedGarbage() {
+    public function notUsedGarbage()
+    {
         $this->getDbCriteria()->compare('t.is_used', self::IS_NOT_USED);
         $this->getDbCriteria()->compare(
             't.created_at',
