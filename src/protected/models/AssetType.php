@@ -41,18 +41,18 @@ class AssetType extends BaseAssetType
      *
      *
      * Static Methods
-     * 
-     * 
+     *
+     *
      */
     
-    public static function model($className=__CLASS__)
+    public static function model($className = __CLASS__)
     {
         return parent::model($className);
     }
 
     /**
      * Gets the Asset type from the current file path.
-     * 
+     *
      * @param  string $absolute_file_path The file path of the image on the server.
      * @return AssetType                  A representation of the type of file given.
      */
@@ -72,12 +72,12 @@ class AssetType extends BaseAssetType
      *
      * Scopes
      *
-     * 
+     *
      */
     
     /**
      * Filters criteria by asset_type of the asset type.
-     * 
+     *
      * @param  string $asset_type The asset_type of the asset type.
      * @return Asset_Type         A reference to this.
      */
