@@ -28,7 +28,14 @@ class AssetController extends ApiController
     public function actionIndex()
     {
         $this->renderJSON([
-            'info' => 'https://bitbucket.org/scooblyboo/assetapi'
+            'api' => [
+                'create' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Create',
+                'use'    => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Use',
+                'read'   => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Read',
+                'delete' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Delete',
+            ],
+            'settings' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/Settings',
+            'testing' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/Testing'
         ]);
     }
 }
