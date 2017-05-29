@@ -44,8 +44,8 @@ return [
             ],
             [
                 Action_Image::NAME_KEY   => "thumbnail",
-                Action_Image::WIDTH_KEY  => 90,
-                Action_Image::HEIGHT_KEY => 90
+                Action_Image::WIDTH_KEY  => 150,
+                Action_Image::HEIGHT_KEY => 150
             ]
         ]
     ]

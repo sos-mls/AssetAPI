@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `AssetAPIDB`.`tbl_asset` (
   `asset_id` INT NOT NULL AUTO_INCREMENT,
   `asset_type_id` INT NOT NULL,
   `file_name` VARCHAR(256) NOT NULL,
-  `uploaded_name` VARCHAR(64) NOT NULL,
+  `uploaded_name` VARCHAR(256) NOT NULL,
   `is_used` TINYINT(1) NOT NULL DEFAULT 0,
   `created_at` DATETIME NULL,
   PRIMARY KEY (`asset_id`),

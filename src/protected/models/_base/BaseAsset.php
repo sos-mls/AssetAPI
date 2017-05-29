@@ -21,71 +21,70 @@
  */
 abstract class BaseAsset extends GxActiveRecord {
 
-    public static function model($className=__CLASS__) {
-        return parent::model($className);
-    }
+	public static function model($className=__CLASS__) {
+		return parent::model($className);
+	}
 
-    public function tableName() {
-        return '{{asset}}';
-    }
+	public function tableName() {
+		return '{{asset}}';
+	}
 
-    public static function label($n = 1) {
-        return Yii::t('app', 'Asset|Assets', $n);
-    }
+	public static function label($n = 1) {
+		return Yii::t('app', 'Asset|Assets', $n);
+	}
 
-    public static function representingColumn() {
-        return 'file_name';
-    }
+	public static function representingColumn() {
+		return 'file_name';
+	}
 
-    public function rules() {
-        return array(
-            array('asset_type_id, file_name, uploaded_name', 'required'),
-            array('asset_type_id, is_used', 'numerical', 'integerOnly'=>true),
-            array('file_name', 'length', 'max'=>256),
-            array('uploaded_name', 'length', 'max'=>64),
-            array('created_at', 'safe'),
-            array('is_used, created_at', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('asset_id, asset_type_id, file_name, uploaded_name, is_used, created_at', 'safe', 'on'=>'search'),
-        );
-    }
+	public function rules() {
+		return array(
+			array('asset_type_id, file_name, uploaded_name', 'required'),
+			array('asset_type_id, is_used', 'numerical', 'integerOnly'=>true),
+			array('file_name, uploaded_name', 'length', 'max'=>256),
+			array('created_at', 'safe'),
+			array('is_used, created_at', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('asset_id, asset_type_id, file_name, uploaded_name, is_used, created_at', 'safe', 'on'=>'search'),
+		);
+	}
 
-    public function relations() {
-        return array(
-            'assetType' => array(self::BELONGS_TO, 'AssetType', 'asset_type_id'),
-            'images' => array(self::HAS_MANY, 'Image', 'asset_id'),
-        );
-    }
+	public function relations() {
+		return array(
+			'assetType' => array(self::BELONGS_TO, 'AssetType', 'asset_type_id'),
+			'images' => array(self::HAS_MANY, 'Image', 'asset_id'),
+		);
+	}
 
-    public function pivotModels() {
-        return array(
-        );
-    }
+	public function pivotModels() {
+		return array(
+		);
+	}
 
-    public function attributeLabels() {
-        return array(
-            'asset_id' => Yii::t('app', 'Asset'),
-            'asset_type_id' => null,
-            'file_name' => Yii::t('app', 'File Name'),
-            'uploaded_name' => Yii::t('app', 'Uploaded Name'),
-            'is_used' => Yii::t('app', 'Is Used'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'assetType' => null,
-            'images' => null,
-        );
-    }
+	public function attributeLabels() {
+		return array(
+			'asset_id' => Yii::t('app', 'Asset'),
+			'asset_type_id' => null,
+			'file_name' => Yii::t('app', 'File Name'),
+			'uploaded_name' => Yii::t('app', 'Uploaded Name'),
+			'is_used' => Yii::t('app', 'Is Used'),
+			'created_at' => Yii::t('app', 'Created At'),
+			'assetType' => null,
+			'images' => null,
+		);
+	}
 
-    public function search() {
-        $criteria = new CDbCriteria;
+	public function search() {
+		$criteria = new CDbCriteria;
 
-        $criteria->compare('asset_id', $this->asset_id);
-        $criteria->compare('asset_type_id', $this->asset_type_id);
-        $criteria->compare('file_name', $this->file_name, true);
-        $criteria->compare('uploaded_name', $this->uploaded_name, true);
-        $criteria->compare('is_used', $this->is_used);
-        $criteria->compare('created_at', $this->created_at, true);
+		$criteria->compare('asset_id', $this->asset_id);
+		$criteria->compare('asset_type_id', $this->asset_type_id);
+		$criteria->compare('file_name', $this->file_name, true);
+		$criteria->compare('uploaded_name', $this->uploaded_name, true);
+		$criteria->compare('is_used', $this->is_used);
+		$criteria->compare('created_at', $this->created_at, true);
 
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
+		return new CActiveDataProvider($this, array(
+			'criteria' => $criteria,
+		));
+	}
 }
