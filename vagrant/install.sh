@@ -3,7 +3,7 @@
 # 
 # 		intall 	 -> /home/vagrant/install
 # 		sql 	 -> /home/vagrant/sql
-# 		src 	 -> /var/www/salecents
+# 		src 	 -> /var/www/assetapi/src
 # 
 # If this is not the case please reference the Vagrantfile in the root of the project.
 # 
