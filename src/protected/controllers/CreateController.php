@@ -30,11 +30,16 @@ class CreateController extends ApiController
     {
         if (!empty($_FILES)) {
             try {
+                $actions = Yii::app()->params->asset_library['actions'];
+                if (array_key_exists('actions', $_POST) && is_array($_POST['actions'])) {
+                    $actions = $_POST['actions'];
+                }
+
                 // Create file here
                 $action_results = File_Image::forge(
                     $_FILES['file']['tmp_name'],
                     Yii::app()->params->asset_library['valid_types'],
-                    Yii::app()->params->asset_library['actions']
+                    $actions
                 )->act();
 
                 $asset = $this->createAsset();
