@@ -146,10 +146,6 @@ class CreateController_Test extends TestController
 
         $_POST = $post;
 
-        $expected_output = "HTTP/1.1 200 OK\n" .
-                "Content-type: application/json\n" .
-                '{"success":"Asset will be deleted."}';
-
         $_SERVER['REDIRECT_URL'] = '/create/';
         ob_start();
         $controller = new $this->controller_name(rand(0,1000));
