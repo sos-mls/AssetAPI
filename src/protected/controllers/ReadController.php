@@ -19,6 +19,8 @@ use Common\ApiController;
  */
 class ReadController extends ApiController
 {
+    const IMG_HASH_ID_CLEAN_REGEX = "/(\.jpg)|(\.png)|(\.gif)/";
+
     /**
      * Gets Asset information about the requested file.
      *
@@ -52,7 +54,7 @@ class ReadController extends ApiController
      */
     public function actionImage()
     {
-        $hash_id = $this->getHashID('read/image');
+        $hash_id = $this->cleanHashID($this->getHashID('read/image'));
         if ($hash_id != "") {
             if (Image::model()->fileName($hash_id)->exists()) {
                 $absolute_file_path = Asset::getAssetDir() . $hash_id;
@@ -78,5 +80,17 @@ class ReadController extends ApiController
         $this->generateHeader('Expires: ' . gmdate(DATE_RFC1123, time()+60*60*24*365));
         $this->generateHeader('Last-Modified: ' . gmdate(DATE_RFC1123, filemtime($absolute_file_path)));
         $this->generateHeader('Content-Type: ' . mime_content_type($absolute_file_path));
+    }
+
+    /**
+     * Goes to remove generic image file extensions from the given hash_id, therefore
+     * "cleaning" it.
+     * 
+     * @param  string $hash_id A hash ID from the request.
+     * @return string          A clean hash id.
+     */
+    private function cleanHashID($hash_id = "")
+    {
+        return preg_replace(self::IMG_HASH_ID_CLEAN_REGEX, "", $hash_id);
     }
 }

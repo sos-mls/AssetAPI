@@ -200,7 +200,21 @@ class ReadController_Test extends TestController
                 "Content-type: application/json\n" .
                 file_get_contents(Asset::getAssetDir() . $image->file_name);
 
+        // read using a clean URL
+
         $_SERVER['REDIRECT_URL'] = '/read/image/' . $image->file_name;
+        ob_start();
+        $controller = new ReadController(rand(0,1000));
+        Reflection::setProperty('allowGenerateHeader', 'ReadController', $controller, false);
+        Reflection::callMethod('actionImage', 'ReadController', [], $controller);
+        $response = ob_get_contents();
+        ob_end_clean();
+
+        $this->assertContains(file_get_contents(Asset::getAssetDir() . $image->file_name), $response);
+
+        // read using a dirty URL
+        
+        $_SERVER['REDIRECT_URL'] = '/read/image/' . $image->file_name . '.jpg';
         ob_start();
         $controller = new ReadController(rand(0,1000));
         Reflection::setProperty('allowGenerateHeader', 'ReadController', $controller, false);
