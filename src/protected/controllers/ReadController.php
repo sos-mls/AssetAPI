@@ -85,7 +85,7 @@ class ReadController extends ApiController
     /**
      * Goes to remove generic image file extensions from the given hash_id, therefore
      * "cleaning" it.
-     * 
+     *
      * @param  string $hash_id A hash ID from the request.
      * @return string          A clean hash id.
      */
