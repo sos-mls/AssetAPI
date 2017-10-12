@@ -31,5 +31,8 @@ sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10M/g' /etc/php5/a
 # Restart apache server after updating its root directory
 sudo service apache2 restart
 
+# Enabled CORS
+sudo a2enmod headers
+
 # For GII!!!
 sudo mkdir /var/www/asset_api/src/assets
