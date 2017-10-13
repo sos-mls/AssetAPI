@@ -1,2 +1,2 @@
-    SetEnv errorapi_mysql_username root
-    SetEnv errorapi_mysql_password default_password
+    SetEnv assetapi_mysql_username root
+    SetEnv assetapi_mysql_password default_password
