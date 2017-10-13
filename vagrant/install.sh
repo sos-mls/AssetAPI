@@ -16,9 +16,9 @@ n_elements=${#scripts[@]}
 
 
 for ((i = 0; i < $n_elements; i ++)); do
-	start_script ${scripts[i]}
-	. $SHELL_HOME/install/${scripts[i]}
-	end_script ${scripts[i]}
+    start_script ${scripts[i]}
+    . $SHELL_HOME/install/${scripts[i]}
+    end_script ${scripts[i]}
 done
 
 . $SHELL_HOME/install/status.sh

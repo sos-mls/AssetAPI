@@ -1,6 +1,6 @@
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "v0rtex/xenial64"
   
   # Mentioning the SSH Username/Password:
   config.vm.boot_timeout = 100000000000
