@@ -28,8 +28,8 @@ sudo sed -i "2s/^/$CONFIG_CONTENTS\n/" /etc/apache2/sites-enabled/000-default.co
 sudo apt-get -y --force-yes install php libapache2-mod-php php-mcrypt php-xml
 sudo apt-get -y --force-yes install curl libcurl3 libcurl3-dev php-curl
 sudo apt-get -y --force-yes install imagemagick php5-imagick
-sudo php5enmod mcrypt
-sudo php5enmod imagick
+sudo phpenmod mcrypt
+sudo phpenmod imagick
 
 # Set php's max file size
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10M/g' /etc/php5/apache2/php.ini
