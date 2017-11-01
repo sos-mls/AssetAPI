@@ -25,9 +25,10 @@ CONFIG_CONTENTS=${CONFIG_CONTENTS//\//\\\/} # escape slashes
 sudo sed -i "2s/^/$CONFIG_CONTENTS\n/" /etc/apache2/sites-enabled/000-default.conf
 
 # Installing PHP and it's dependencies
-sudo apt-get -y --force-yes install php libapache2-mod-php php-mcrypt php-xml
+sudo apt-get -y --force-yes install php libapache2-mod-php php-mcrypt php-xml php-mbstring
 sudo apt-get -y --force-yes install curl libcurl3 libcurl3-dev php-curl
-sudo apt-get -y --force-yes install imagemagick php5-imagick
+sudo apt-get -y --force-yes install imagemagick
+sudo apt-get -y --force-yes install php-imagick
 sudo phpenmod mcrypt
 sudo phpenmod imagick
 

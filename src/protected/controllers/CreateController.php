@@ -56,7 +56,7 @@ class CreateController extends ApiController
                     ]);
                 }
             } catch (Exception $e) {
-                $this->renderJSONError($e->getMessage(), 500);
+                $this->renderJSONError($e->getMessage(), 200);
             }
         } else {
             $this->renderJSONError("Not a proper http method type, please send a FILE");
