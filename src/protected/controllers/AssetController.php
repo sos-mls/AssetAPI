@@ -29,13 +29,13 @@ class AssetController extends ApiController
     {
         $this->renderJSON([
             'api' => [
-                'create' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Create',
-                'use'    => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Use',
-                'read'   => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Read',
-                'delete' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/api/Delete',
+                'create' => 'https://github.com/sos-mls/AssetAPI/wiki/API-Create',
+                'use'    => 'https://github.com/sos-mls/AssetAPI/wiki/API-Use',
+                'read'   => 'https://github.com/sos-mls/AssetAPI/wiki/API-Read',
+                'delete' => 'https://github.com/sos-mls/AssetAPI/wiki/API-Delete',
             ],
-            'settings' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/Settings',
-            'testing' => 'https://bitbucket.org/scooblyboo/assetapi/wiki/Testing'
+            'settings' => 'https://github.com/sos-mls/AssetAPI/wiki/Settings',
+            'testing' => 'https://github.com/sos-mls/AssetAPI/wiki/Testing'
         ]);
     }
 }
