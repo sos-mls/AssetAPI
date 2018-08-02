@@ -40,9 +40,9 @@ class AssetType extends BaseAssetType
     ];
 
     private static $_valid_document_types = [
-        'txt',
-        'csv',
-        'xlsx',
+        "text/plain",
+        "text/csv",
+        "application/vnd.ms-excel"
     ];
 
     /**
@@ -70,7 +70,7 @@ class AssetType extends BaseAssetType
             return self::model()->assetType(self::VIDEO)->find();
         } else if (in_array(exif_imagetype($absolute_file_path), self::$_valid_image_types)) {
             return self::model()->assetType(self::IMAGE)->find();
-        } else {
+        } else if (in_array(mime_content_type($absolute_file_path), self::$_valid_document_types)) {
             return self::model()->assetType(self::DOCUMENT)->find();
         }
     }
