@@ -5,11 +5,11 @@
     "repositories": [
         { 
           "type": "vcs", 
-          "url": "https://bitbucket.org/scooblyboo/milfphp.git"
+          "url": "https://github.com/sos-mls/MLS-PHPLibrary.git"
         },
         { 
           "type": "vcs", 
-          "url": "https://bitbucket.org/scooblyboo/assetlibrary.git"
+          "url": "https://github.com/sos-mls/AssetLibrary.git"
         },
         { 
           "type": "vcs", 

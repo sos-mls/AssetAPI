@@ -162,7 +162,7 @@ class ReadController_Test extends TestController
 
         $action_results = File_Image::forge(
             $file_path,
-            Yii::app()->params->asset_library['valid_types'],
+            Yii::app()->params->asset_library['valid_image_types'],
             [Yii::app()->params->asset_library['actions'][0]]
         )->act();
 

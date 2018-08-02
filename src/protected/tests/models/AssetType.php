@@ -73,8 +73,8 @@ class AssetType_Test extends CDbTestCase
                 AssetType::VIDEO
             ],
             [
-                self::COMPARISON_DIRECTORY . '/eckroth-coffeehouse_conversation.talk',
-                AssetType::FILE
+                self::COMPARISON_DIRECTORY . '/eckroth-coffeehouse_conversation.txt',
+                AssetType::DOCUMENT
             ]
         ];
     }

@@ -8,6 +8,7 @@
 
 use Common\Reflection;
 use Asset\Action\Image as Action_Image;
+use Asset\Action\Document as Action_Document;
 
 /**
  * CreateController_Test class. A PHPUnit Test case class.
@@ -101,6 +102,16 @@ class CreateController_Test extends TestController
                         ]
                     ]
                 ]
+            ],
+            [
+                TestController::COMPARISON_DIRECTORY . '/eckroth-coffeehouse_conversation.txt',
+                [
+                    'actions' => [
+                        [
+                            Action_Document::NAME_KEY => "coffeehouse_conversation"
+                        ]
+                    ]
+                ]
             ]
         ];
     }
@@ -157,8 +168,9 @@ class CreateController_Test extends TestController
         $json_response = str_replace("HTTP/1.1 200 OK\n", "", $response);
         $json_response = str_replace("Content-type: application/json\n", "", $json_response);
         $asset_json = json_decode($json_response);
-        
+
         $this->assertTrue(Asset::model()->fileName($asset_json->public_url)->exists());
+        
         if (Asset::model()->fileName($asset_json->public_url)->exists()) {
             $this->assertCreationEquals(Asset::model()->fileName($asset_json->public_url)->find());
         }
@@ -172,16 +184,21 @@ class CreateController_Test extends TestController
      */
     private function assertCreationEquals(Asset $asset) {
         foreach ($_POST['actions'] as $action) {
-            $size_exists = false;
 
-            foreach ($asset->images as $image) {
-                if ($image->width == $action[self::EXPECTED_WIDTH_KEY] &&
-                    $image->height == $action[self::EXPECTED_HEIGHT_KEY]) {
-                    $size_exists = true;
-                }
+            if (count($asset->images) > 0)
+            {
+                $size_exists = false;
+                foreach ($asset->images as $image) {
+                    if ($image->width <= $action[self::EXPECTED_WIDTH_KEY] + 1 &&
+                        $image->width >= $action[self::EXPECTED_WIDTH_KEY] - 1 &&
+                        $image->height <= $action[self::EXPECTED_HEIGHT_KEY] + 1 &&
+                        $image->height >= $action[self::EXPECTED_HEIGHT_KEY] - 1) {
+                        $size_exists = true;
+                    }
+                }   
+                $this->assertTrue($size_exists);
             }
 
-            $this->assertTrue($size_exists);
         }
     }
 }

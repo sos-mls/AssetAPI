@@ -26,7 +26,7 @@ sudo sed -i "2s/^/$CONFIG_CONTENTS\n/" /etc/apache2/sites-enabled/000-default.co
 
 # Installing PHP and it's dependencies
 sudo apt-get -y --force-yes install php libapache2-mod-php php-mcrypt php-xml php-mbstring
-sudo apt-get -y --force-yes install curl libcurl3 libcurl3-dev php-curl
+sudo apt-get -y --force-yes install curl libcurl3 libcurl3-dev php-curl php-zip
 sudo apt-get -y --force-yes install imagemagick
 sudo apt-get -y --force-yes install php-imagick
 sudo phpenmod mcrypt

@@ -29,10 +29,15 @@ return [
     'relative_image_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? '//' . $_SERVER['HTTP_HOST'] . '/read/image/' : '',
 
     'asset_library' => [
-        'valid_types' => [
+        'valid_image_types' => [
             IMAGETYPE_GIF,
             IMAGETYPE_JPEG,
             IMAGETYPE_PNG,
+        ],
+        'valid_document_types' => [
+            "text/plain",
+            "text/csv",
+            "application/vnd.ms-excel"
         ],
         'actions' => [
             [

@@ -113,9 +113,24 @@ class DeleteController_Test extends TestController
 
         $action_results = File_Image::forge(
             $file_path,
-            Yii::app()->params->asset_library['valid_types'],
+            Yii::app()->params->asset_library['valid_image_types'],
             [Yii::app()->params->asset_library['actions'][0]]
         )->act();
+
+        if (AssetType::getType($file_path) == AssetType::IMAGE)
+        {
+            $action_results = File_Image::forge(
+                $file_path,
+                Yii::app()->params->asset_library['valid_image_types'],
+                [Yii::app()->params->asset_library['actions'][0]]
+            )->act();
+        } else if (AssetType::getType($file_path) == AssetType::DOCUMENT) {
+            $action_results = File_Document::forge(
+                $file_path,
+                Yii::app()->params->asset_library['valid_document_types'],
+                []
+            )->act();
+        }
 
         $asset = new Asset();
         $asset->asset_type_id = $asset_type->asset_type_id;

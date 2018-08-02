@@ -9,6 +9,9 @@
 use Common\ApiController;
 use Asset\Action\Image as Action_Image;
 use Asset\File\Image as File_Image;
+use Asset\Action\Document as Action_Document;
+use Asset\File\Document as File_Document;
+use Common\File;
 use Common\File\NotFoundException;
 use Common\File\NotSafeException;
 use Common\File\NotValidException;
@@ -35,12 +38,24 @@ class CreateController extends ApiController
                     $actions = $_POST['actions'];
                 }
 
-                // Create file here
-                $action_results = File_Image::forge(
-                    $_FILES['file']['tmp_name'],
-                    Yii::app()->params->asset_library['valid_types'],
-                    $actions
-                )->act();
+                $absolute_path = $_FILES['file']['tmp_name'];
+                $file_name = $_FILES['file']['name'];
+
+                // Create image file here
+                if (AssetType::getType($absolute_path) == AssetType::IMAGE)
+                {
+                    $action_results = File_Image::forge(
+                        $_FILES['file']['tmp_name'],
+                        Yii::app()->params->asset_library['valid_image_types'],
+                        $actions
+                    )->act();
+                } else if (AssetType::getType($absolute_path, $file_name) == AssetType::DOCUMENT) {
+                    $action_results = File_Document::forge(
+                        $_FILES['file']['tmp_name'],
+                        Yii::app()->params->asset_library['valid_document_types'],
+                        $actions
+                    )->act();
+                }
 
                 $asset = $this->createAsset();
 

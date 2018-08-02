@@ -7,7 +7,7 @@ return [
     'video' => [
         'asset_type' => AssetType::VIDEO
     ],
-    'file' => [
-        'asset_type' => AssetType::FILE
+    'document' => [
+        'asset_type' => AssetType::DOCUMENT
     ]
 ];

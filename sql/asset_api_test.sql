@@ -83,7 +83,7 @@ START TRANSACTION;
 USE `AssetAPITestDB`;
 INSERT INTO `AssetAPITestDB`.`tbl_asset_type` (`asset_type_id`, `asset_type`) VALUES (DEFAULT, 'image');
 INSERT INTO `AssetAPITestDB`.`tbl_asset_type` (`asset_type_id`, `asset_type`) VALUES (DEFAULT, 'video');
-INSERT INTO `AssetAPITestDB`.`tbl_asset_type` (`asset_type_id`, `asset_type`) VALUES (DEFAULT, 'file');
+INSERT INTO `AssetAPITestDB`.`tbl_asset_type` (`asset_type_id`, `asset_type`) VALUES (DEFAULT, 'document');
 
 COMMIT;
 

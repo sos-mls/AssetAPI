@@ -7,6 +7,7 @@
  */
 
 Yii::import('application.models._base.BaseAssetType');
+use Common\File;
 
 /**
  * The AssetType class.
@@ -19,14 +20,15 @@ Yii::import('application.models._base.BaseAssetType');
 
 class AssetType extends BaseAssetType
 {
-    const IMAGE = 'image';
-    const VIDEO = 'video';
-    const FILE  = 'file';
+    const IMAGE    = 'image';
+    const VIDEO    = 'video';
+    const DOCUMENT = 'document';
 
     private static $_valid_video_types = [
         'video/mp4',
         'video/mpeg',
         'application/ogg',
+        'video/ogg',
         'video/webm',
         'video/quicktime'
     ];
@@ -35,6 +37,12 @@ class AssetType extends BaseAssetType
         IMAGETYPE_GIF,
         IMAGETYPE_JPEG,
         IMAGETYPE_PNG,
+    ];
+
+    private static $_valid_document_types = [
+        'txt',
+        'csv',
+        'xlsx',
     ];
 
     /**
@@ -56,14 +64,14 @@ class AssetType extends BaseAssetType
      * @param  string $absolute_file_path The file path of the image on the server.
      * @return AssetType                  A representation of the type of file given.
      */
-    public static function getType($absolute_file_path)
+    public static function getType($absolute_file_path, $file_name = "")
     {
         if (in_array(mime_content_type($absolute_file_path), self::$_valid_video_types)) {
             return self::model()->assetType(self::VIDEO)->find();
         } else if (in_array(exif_imagetype($absolute_file_path), self::$_valid_image_types)) {
             return self::model()->assetType(self::IMAGE)->find();
         } else {
-            return self::model()->assetType(self::FILE)->find();
+            return self::model()->assetType(self::DOCUMENT)->find();
         }
     }
 
