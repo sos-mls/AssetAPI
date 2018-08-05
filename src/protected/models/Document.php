@@ -1,27 +1,25 @@
 <?php
 
 /**
- * Contains the Image class.
+ * Contains the Document class.
  *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
 
-Yii::import('application.models._base.BaseImage');
+Yii::import('application.models._base.BaseDocument');
 
 /**
- * The Image class.
+ * The Document class.
  *
- * Contains the width, height, size, and name of the image.
+ * Contains the size, and name of the document.
  *
  * @author Christian Micklisch <christian.micklisch@successwithsos.com>
  */
-
-class Image extends BaseImage
+class Document extends BaseDocument
 {
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
-    }
+	public static function model($className=__CLASS__) {
+		return parent::model($className);
+	}
 
     /**
      *
@@ -32,19 +30,19 @@ class Image extends BaseImage
      */
 
     /**
-     * Gets the URL to the image.
+     * Gets the URL to the document.
      *
-     * @return string The image URL.
+     * @return string The document URL.
      */
     public function getURL()
     {
-        return Yii::app()->params->relative_image_dir . $this->file_name;
+        return Yii::app()->params->relative_document_dir . $this->file_name;
     }
 
     /**
-     * Converts all of the image information to an array
+     * Converts all of the document information to an array
      *
-     * @return array All of the image information.
+     * @return array All of the document information.
      */
     public function toArray()
     {
@@ -52,8 +50,6 @@ class Image extends BaseImage
             'public_url' => $this->getURL(),
             'file_name'  => $this->file_name,
             'file_size'  => $this->file_size,
-            'width'      => $this->width,
-            'height'     => $this->height,
             'created_at' => $this->created_at,
         ];
     }
@@ -70,7 +66,7 @@ class Image extends BaseImage
      * Filters criteria by file_name.
      *
      * @param  string $file_name The file name to filter by.
-     * @return Image             A reference to this.
+     * @return Document          A reference to this.
      */
     public function fileName($file_name)
     {

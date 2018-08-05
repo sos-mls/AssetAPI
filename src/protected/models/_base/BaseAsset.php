@@ -17,6 +17,7 @@
  * @property string $created_at
  *
  * @property AssetType $assetType
+ * @property Document[] $documents
  * @property Image[] $images
  */
 abstract class BaseAsset extends GxActiveRecord {
@@ -51,6 +52,7 @@ abstract class BaseAsset extends GxActiveRecord {
 	public function relations() {
 		return array(
 			'assetType' => array(self::BELONGS_TO, 'AssetType', 'asset_type_id'),
+			'documents' => array(self::HAS_MANY, 'Document', 'asset_id'),
 			'images' => array(self::HAS_MANY, 'Image', 'asset_id'),
 		);
 	}
@@ -69,6 +71,7 @@ abstract class BaseAsset extends GxActiveRecord {
 			'is_used' => Yii::t('app', 'Is Used'),
 			'created_at' => Yii::t('app', 'Created At'),
 			'assetType' => null,
+			'documents' => null,
 			'images' => null,
 		);
 	}

@@ -72,6 +72,27 @@ CREATE TABLE IF NOT EXISTS `AssetAPIDB`.`tbl_image` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `AssetAPIDB`.`tbl_document`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AssetAPIDB`.`tbl_document` ;
+
+CREATE TABLE IF NOT EXISTS `AssetAPIDB`.`tbl_document` (
+  `document_id` INT NOT NULL AUTO_INCREMENT,
+  `asset_id` INT NOT NULL,
+  `file_name` VARCHAR(256) NOT NULL,
+  `file_size` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  PRIMARY KEY (`document_id`),
+  INDEX `fk_tbl_document_tbl_asset1_idx` (`asset_id` ASC),
+  CONSTRAINT `fk_tbl_document_tbl_asset1`
+    FOREIGN KEY (`asset_id`)
+    REFERENCES `AssetAPIDB`.`tbl_asset` (`asset_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -70,6 +70,32 @@ class ReadController extends ApiController
     }
 
     /**
+     * Reads the contents of the document from the given filename.
+     *
+     * Checks to see that the documents's fileName currently exists, if so then it
+     * gets the absolute file path to the document and gets the contents of that
+     * document.
+     *
+     * @return string The contents of the document.
+     */
+    public function actionDocument()
+    {
+        $hash_id = $this->cleanHashID($this->getHashID('read/document'));
+        if ($hash_id != "") {
+            if (Document::model()->fileName($hash_id)->exists()) {
+                $absolute_file_path = Asset::getAssetDir() . $hash_id;
+                $this->setHeader($absolute_file_path);
+                
+                echo file_get_contents($absolute_file_path);
+            } else {
+                $this->renderJSONError("Document not found.");
+            }
+        } else {
+            $this->renderJSONError("Please send the document file_name");
+        }
+    }
+
+    /**
      * Sets the proper header for the assets that is being read.
      *
      * @param string $absolute_file_path The absolute file path on the server.

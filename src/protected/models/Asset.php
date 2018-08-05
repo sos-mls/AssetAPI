@@ -125,6 +125,10 @@ class Asset extends BaseAsset
             foreach ($this->images as $image) {
                 $files[] = $image->toArray();
             }
+        } else if ($this->assetType->asset_type == AssetType::DOCUMENT) {
+            foreach ($this->documents as $document) {
+                $files[] = $document->toArray();
+            }
         }
 
         return $files;
@@ -143,6 +147,12 @@ class Asset extends BaseAsset
                 $absolute_file_path = self::getAssetDir() . $image->file_name;
                 unlink($absolute_file_path);
                 $image->delete();
+            }
+        } else if ($this->assetType->asset_type == AssetType::DOCUMENT) {
+            foreach ($this->documents as $document) {
+                $absolute_file_path = self::getAssetDir() . $document->file_name;
+                unlink($absolute_file_path);
+                $document->delete();
             }
         }
     }

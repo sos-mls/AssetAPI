@@ -61,6 +61,8 @@ class CreateController extends ApiController
 
                 if ($asset->assetType->asset_type == AssetType::IMAGE) {
                     $this->createImages($asset, $action_results);
+                } else if ($asset->assetType->asset_type == AssetType::DOCUMENT) {
+                    $this->createDocuments($asset, $action_results);
                 }
 
                 if (sizeof($asset->getErrors()) == 0) {
@@ -131,6 +133,37 @@ class CreateController extends ApiController
             $image->save();
 
             $asset->addErrors($image->getErrors());
+        }
+    }
+
+    /**
+     * Creates a list of documents from the given assets and action results on the file.
+     *
+     * Runs through all of the action results to get the path of the acted on file and move
+     * it to the desired destination. It saves information about the new document (name and size)
+     * and associates it with the given asset.
+     * 
+     * @param  Asset  &$asset         A reference to the recently created asset.
+     * @param  array  $action_results The results of the action on the file.
+     */
+    private function createDocuments(Asset &$asset, array $action_results = [])
+    {
+        foreach ($action_results as $action_result) {
+            $destination = Asset::generateDestination();
+            $name = Asset::getAssetName($destination);
+
+            if (!rename($action_result[Action_Document::PATH_KEY], $destination)) {
+                $this->renderJSONError("Could not save the document. Please Try again.");
+            }
+
+            $document = new Document();
+            $document->asset_id = $asset->asset_id;
+            $document->file_name = $name;
+            $document->file_size = filesize($destination);
+            $document->created_at = str_replace("+0000", "Z", date(DATE_ISO8601, getdate()[0]));
+            $document->save();
+
+            $asset->addErrors($document->getErrors());
         }
     }
 }

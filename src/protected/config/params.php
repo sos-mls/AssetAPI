@@ -28,6 +28,8 @@ return [
 
     'relative_image_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? '//' . $_SERVER['HTTP_HOST'] . '/read/image/' : '',
 
+    'relative_document_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? '//' . $_SERVER['HTTP_HOST'] . '/read/document/' : '',
+
     'asset_library' => [
         'valid_image_types' => [
             IMAGETYPE_GIF,
