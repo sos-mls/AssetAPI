@@ -20,8 +20,20 @@ use Asset\File\Image as File_Image;
 
 class QueryController_Test extends TestController
 {
+    const DEFAULT_FILE_PATH = TestController::COMPARISON_DIRECTORY . '/contain_aspect_true.png';
     const EXPECTED_HEIGHT_KEY = 'expected_height';
     const EXPECTED_WIDTH_KEY = 'expected_width';
+    const THUMBNAIL_POST = [
+        'actions' => [
+            [
+                Action_Image::NAME_KEY    => "thumbnail",
+                Action_Image::WIDTH_KEY   => 150,
+                Action_Image::HEIGHT_KEY  => 150,
+                self::EXPECTED_WIDTH_KEY  => 150,
+                self::EXPECTED_HEIGHT_KEY => 150
+            ]
+        ]
+    ];
 
     /**
      * Sets the controller name
@@ -48,24 +60,30 @@ class QueryController_Test extends TestController
      */
     public function input_actionAsset()
     {
-        $uploaded_aspect_name = 'contain_aspect_true' . time();
+        $basic_test_name = 'basic_test' . time() . rand(0, 10000);
+        $type_test_name = 'type_test' . time() . rand(0, 10000);
+        $used_test_name = 'used_test' . time() . rand(0, 10000);
+
         return [
             [
-                TestController::COMPARISON_DIRECTORY . '/contain_aspect_true.png',
-                $uploaded_aspect_name,
+                $basic_test_name,
                 [
-                    'actions' => [
-                        [
-                            Action_Image::NAME_KEY    => "thumbnail",
-                            Action_Image::WIDTH_KEY   => 150,
-                            Action_Image::HEIGHT_KEY  => 150,
-                            self::EXPECTED_WIDTH_KEY  => 150,
-                            self::EXPECTED_HEIGHT_KEY => 150
-                        ]
-                    ]
-                ],
+                    'uploaded_name' => $basic_test_name,
+                ]
+            ],
+            [
+                $type_test_name,
                 [
-                    'uploaded_name' => $uploaded_aspect_name,
+                    'type' => AssetType::IMAGE,
+                    'uploaded_name' => $type_test_name,
+                ]
+            ],
+            [
+                $used_test_name,
+                [
+                    'is_used' => Asset::IS_NOT_USED,
+                    'type' => AssetType::IMAGE,
+                    'uploaded_name' => $used_test_name,
                 ]
             ]
         ];
@@ -87,20 +105,60 @@ class QueryController_Test extends TestController
      * 
      * @dataProvider input_actionAsset
      * 
-     * @param  string $file_path The path to a file
+     * @param  string $file_name Name of the file to be referenced when querying and uploading.
+     * @param  array  $get       Data to provide to the query API.
      */
-    public function test_actionAsset($file_path = "", $file_name, $post, $get)
+    public function test_actionAsset($file_name = "", $get = [])
+    {
+        $create_json_response = $this->createAsset($file_name);
+
+        $_GET = $get;
+
+        $_SERVER['REDIRECT_URL'] = '/query/asset/';
+        ob_start();
+        $controller = new $this->controller_name(rand(0,1000));
+        Reflection::setProperty('allowGenerateHeader', $this->controller_name, $controller, false);
+        Reflection::callMethod('actionAsset', $this->controller_name, [], $controller);
+        $response = ob_get_contents();
+        ob_end_clean();
+
+        $json_response = str_replace("HTTP/1.1 200 OK\n", "", $response);
+        $json_response = str_replace("Content-type: application/json\n", "", $json_response);
+
+        $this->assertEquals("[" . $create_json_response . "]", $json_response);
+    }
+
+    /**
+     * [test_actionAssetQueryError description]
+     * @return [type] [description]
+     */
+    public function test_actionAssetError()
+    {
+        $expected_output = "HTTP/1.1 424 \n" .
+            "Content-type: application/json\n" .
+            '{"errors":{"general":["Please send a valid GET. Include type, uploaded_name or is_used"]}}';
+
+        $this->assertControllerResponse('actionAsset',  '/query/asset/', $expected_output);
+    }
+
+    /**
+     * Creates an asset using the create API.
+     * 
+     * @param  string $file_name Name of the file to be referenced when querying and uploading.
+     * @return string            The create JSON string from the creation API.
+     */
+    private function createAsset($file_name = "")
     {
         $this->controller_name = 'CreateController';
 
         $_FILES = [
             'file' => [
-                'tmp_name' => $file_path,
+                'tmp_name' => self::DEFAULT_FILE_PATH,
                 'name' => $file_name
             ]
         ];
 
-        $_POST = $post;
+        $_POST = self::THUMBNAIL_POST;
 
         $_SERVER['REDIRECT_URL'] = '/create/';
         ob_start();
@@ -115,47 +173,6 @@ class QueryController_Test extends TestController
 
         $this->controller_name = 'QueryController';
 
-        $_GET = $get;
-
-        $_SERVER['REDIRECT_URL'] = '/query/asset/';
-        ob_start();
-        $controller = new $this->controller_name(rand(0,1000));
-        Reflection::setProperty('allowGenerateHeader', $this->controller_name, $controller, false);
-        Reflection::callMethod('actionAsset', $this->controller_name, [], $controller);
-        $response = ob_get_contents();
-        ob_end_clean();
-
-        $json_response = str_replace("HTTP/1.1 200 OK\n", "", $response);
-        $json_response = str_replace("Content-type: application/json\n", "", $json_response);
-        // $query_json = json_decode($json_response);
-
-        $this->assertEquals($json_response, "[" . $create_json_response . "]");
-
-    }
-
-    /**
-     * Confirms that the asset images created are of same style as the actions passed 
-     * in the post.
-     * 
-     * @param  Asset  $asset The asset created.
-     */
-    private function assertCreationEquals(Asset $asset) {
-        foreach ($_POST['actions'] as $action) {
-
-            if (count($asset->images) > 0)
-            {
-                $size_exists = false;
-                foreach ($asset->images as $image) {
-                    if ($image->width <= $action[self::EXPECTED_WIDTH_KEY] + 1 &&
-                        $image->width >= $action[self::EXPECTED_WIDTH_KEY] - 1 &&
-                        $image->height <= $action[self::EXPECTED_HEIGHT_KEY] + 1 &&
-                        $image->height >= $action[self::EXPECTED_HEIGHT_KEY] - 1) {
-                        $size_exists = true;
-                    }
-                }   
-                $this->assertTrue($size_exists);
-            }
-
-        }
+        return $create_json_response;
     }
 }

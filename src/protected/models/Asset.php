@@ -182,6 +182,19 @@ class Asset extends BaseAsset
     }
 
     /**
+     * Filters criteria by asset_type.
+     *
+     * @param  string $asset_type The asset type to filter by.
+     * @return Asset             A reference to this.
+     */
+    public function assetType($asset_type)
+    {
+        $this->getDbCriteria()->compare('t.asset_type_id', AssetType::model()->assetType($asset_type)->find()->asset_type_id);
+        return $this;
+    }
+    // public function createdAt($created_at)
+
+    /**
      * Filters criteria by file_name.
      *
      * @param  string $file_name The file name to filter by.

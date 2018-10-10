@@ -19,17 +19,15 @@ use Common\ApiController;
 class QueryController extends ApiController
 {
     const EXPECTED_ASSET_KEYS = [
-        'type', 
-        'file_name', 
-        'uploaded_name', 
-        'is_used', 
+        'type',
+        'uploaded_name',
+        'is_used',
         'created_at'
     ];
     const ASSET_SCOPE_FUNCTIONS = [
-        'type' => 'assetType', 
-        'file_name' => 'fileName', 
-        'uploaded_name' => 'uploadedName', 
-        'is_used' => 'isUsed', 
+        'type' => 'assetType',
+        'uploaded_name' => 'uploadedName',
+        'is_used' => 'isUsed',
         'created_at' => 'createdAt'
     ];
 
@@ -45,7 +43,7 @@ class QueryController extends ApiController
         if ($this->validAssetGet()) {
             $model = Asset::model();
             foreach (self::EXPECTED_ASSET_KEYS as $key) {
-                if (isset($_GET[$key])) {
+                if (isset($_GET[$key]) && sizeof($_GET[$key]) > 0 ) {
                     $model->{self::ASSET_SCOPE_FUNCTIONS[$key]}($_GET[$key]);
                 }
             }
@@ -57,7 +55,7 @@ class QueryController extends ApiController
 
             $this->renderJSON($assetJSONs);
         } else {
-            $this->renderJSONError("Please send a valid GET. Include type, file_name, uploaded_name, is_used, created_at");
+            $this->renderJSONError("Please send a valid GET. Include type, uploaded_name or is_used");
         }
     }
 
