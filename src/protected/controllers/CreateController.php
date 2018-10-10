@@ -66,7 +66,7 @@ class CreateController extends ApiController
                 }
 
                 if (sizeof($asset->getErrors()) == 0) {
-                    $this->renderJSON($asset->toArray());
+                    $this->renderJSON(Asset::model()->fileName($asset->file_name)->find()->toArray());
                 } else {
                     $this->renderJSON([
                         'errors' => $asset->getErrors()

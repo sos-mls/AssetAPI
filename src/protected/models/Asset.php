@@ -166,18 +166,6 @@ class Asset extends BaseAsset
      */
 
     /**
-     * Filters criteria by file_name.
-     *
-     * @param  string $file_name The file name to filter by.
-     * @return Asset             A reference to this.
-     */
-    public function fileName($file_name)
-    {
-        $this->getDbCriteria()->compare('t.file_name', $file_name);
-        return $this;
-    }
-
-    /**
      * Filters the assets that are older than a day old and have not been used yet.
      *
      * @return Asset A reference to this.
@@ -190,6 +178,42 @@ class Asset extends BaseAsset
             '<' . date(Yii::app()->params->dbDateFormat, strtotime('-80 minutes'))
         );
 
+        return $this;
+    }
+
+    /**
+     * Filters criteria by file_name.
+     *
+     * @param  string $file_name The file name to filter by.
+     * @return Asset             A reference to this.
+     */
+    public function fileName($file_name)
+    {
+        $this->getDbCriteria()->compare('t.file_name', $file_name);
+        return $this;
+    }
+
+    /**
+     * Filters criteria by uploaded_name.
+     *
+     * @param  string $uploaded_name The uploaded name to filter by.
+     * @return Asset                 A reference to this.
+     */
+    public function uploadedName($uploaded_name)
+    {
+        $this->getDbCriteria()->compare('t.uploaded_name', $uploaded_name);
+        return $this;
+    }
+
+    /**
+     * Filters criteria by is_used value.
+     *
+     * @param  string $is_used The file name to filter by.
+     * @return Asset           A reference to this.
+     */
+    public function isUsed($is_used = self::IS_NOT_USED) 
+    {
+        $this->getDbCriteria()->compare('t.is_used', $is_used);
         return $this;
     }
 }
