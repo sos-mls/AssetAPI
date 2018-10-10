@@ -127,7 +127,7 @@ class CreateController_Test extends TestController
      */
 
     /**
-     * Tests the actionIndex method errpr resonse.
+     * Tests the actionIndex method error resonse.
      */
     public function test_actionIndexError()
     {

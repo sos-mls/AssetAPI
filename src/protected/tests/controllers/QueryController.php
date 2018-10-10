@@ -129,8 +129,7 @@ class QueryController_Test extends TestController
     }
 
     /**
-     * [test_actionAssetQueryError description]
-     * @return [type] [description]
+     * Tests the actionAsset method error resonse.
      */
     public function test_actionAssetError()
     {
