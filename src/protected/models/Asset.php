@@ -192,7 +192,6 @@ class Asset extends BaseAsset
         $this->getDbCriteria()->compare('t.asset_type_id', AssetType::model()->assetType($asset_type)->find()->asset_type_id);
         return $this;
     }
-    // public function createdAt($created_at)
 
     /**
      * Filters criteria by file_name.

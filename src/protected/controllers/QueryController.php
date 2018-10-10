@@ -21,14 +21,12 @@ class QueryController extends ApiController
     const EXPECTED_ASSET_KEYS = [
         'type',
         'uploaded_name',
-        'is_used',
-        'created_at'
+        'is_used'
     ];
     const ASSET_SCOPE_FUNCTIONS = [
         'type' => 'assetType',
         'uploaded_name' => 'uploadedName',
-        'is_used' => 'isUsed',
-        'created_at' => 'createdAt'
+        'is_used' => 'isUsed'
     ];
 
     /**
