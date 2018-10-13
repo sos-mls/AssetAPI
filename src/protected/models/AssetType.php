@@ -68,10 +68,10 @@ class AssetType extends BaseAssetType
     {
         if (in_array(mime_content_type($absolute_file_path), self::$_valid_video_types)) {
             return self::model()->assetType(self::VIDEO)->find();
-        } else if (in_array(exif_imagetype($absolute_file_path), self::$_valid_image_types)) {
-            return self::model()->assetType(self::IMAGE)->find();
         } else if (in_array(mime_content_type($absolute_file_path), self::$_valid_document_types)) {
             return self::model()->assetType(self::DOCUMENT)->find();
+        } else if (in_array(exif_imagetype($absolute_file_path), self::$_valid_image_types)) {
+            return self::model()->assetType(self::IMAGE)->find();
         }
     }
 
