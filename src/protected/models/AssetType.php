@@ -40,6 +40,7 @@ class AssetType extends BaseAssetType
     ];
 
     private static $_valid_document_types = [
+        "text/x-c",
         "text/plain",
         "text/csv",
         "application/vnd.ms-excel"
