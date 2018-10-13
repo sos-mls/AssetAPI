@@ -18,17 +18,6 @@ use Common\ApiController;
  */
 class QueryController extends ApiController
 {
-    const EXPECTED_ASSET_KEYS = [
-        'type',
-        'uploaded_name',
-        'is_used'
-    ];
-    const ASSET_SCOPE_FUNCTIONS = [
-        'type' => 'assetType',
-        'uploaded_name' => 'uploadedName',
-        'is_used' => 'isUsed'
-    ];
-
     /**
      * Gets Asset information about the requested file.
      *
@@ -40,9 +29,9 @@ class QueryController extends ApiController
     {
         if ($this->validAssetGet()) {
             $model = Asset::model();
-            foreach (self::EXPECTED_ASSET_KEYS as $key) {
+            foreach (Yii::app()->params->query_expected_asset_keys as $key) {
                 if (isset($_GET[$key]) && sizeof($_GET[$key]) > 0 ) {
-                    $model->{self::ASSET_SCOPE_FUNCTIONS[$key]}($_GET[$key]);
+                    $model->{Yii::app()->params->query_asset_scope_functions[$key]}($_GET[$key]);
                 }
             }
             $assetObjects = $model->findAll();
@@ -65,7 +54,7 @@ class QueryController extends ApiController
     private function validAssetGet()
     {
         $valid = false;
-        foreach (self::EXPECTED_ASSET_KEYS as $key) {
+        foreach (Yii::app()->params->query_expected_asset_keys as $key) {
             if (array_key_exists($key, $_GET)) {
                 $valid = true;
             }
