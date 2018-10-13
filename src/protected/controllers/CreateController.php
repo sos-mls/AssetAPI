@@ -42,8 +42,7 @@ class CreateController extends ApiController
                 $file_name = $_FILES['file']['name'];
 
                 // Create image file here
-                if (AssetType::getType($absolute_path) == AssetType::IMAGE)
-                {
+                if (AssetType::getType($absolute_path) == AssetType::IMAGE) {
                     $action_results = File_Image::forge(
                         $_FILES['file']['tmp_name'],
                         Yii::app()->params->asset_library['valid_image_types'],
@@ -142,7 +141,7 @@ class CreateController extends ApiController
      * Runs through all of the action results to get the path of the acted on file and move
      * it to the desired destination. It saves information about the new document (name and size)
      * and associates it with the given asset.
-     * 
+     *
      * @param  Asset  &$asset         A reference to the recently created asset.
      * @param  array  $action_results The results of the action on the file.
      */

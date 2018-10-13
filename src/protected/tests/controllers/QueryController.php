@@ -20,7 +20,7 @@ use Asset\File\Image as File_Image;
 
 class QueryController_Test extends TestController
 {
-    const DEFAULT_FILE_PATH = TestController::COMPARISON_DIRECTORY . '/contain_aspect_true.png';
+    const DEFAULT_FILE_NAME = '/contain_aspect_true.png';
     const EXPECTED_HEIGHT_KEY = 'expected_height';
     const EXPECTED_WIDTH_KEY = 'expected_width';
     const THUMBNAIL_POST = [
@@ -152,7 +152,7 @@ class QueryController_Test extends TestController
 
         $_FILES = [
             'file' => [
-                'tmp_name' => self::DEFAULT_FILE_PATH,
+                'tmp_name' => TestController::COMPARISON_DIRECTORY . self::DEFAULT_FILE_NAME,
                 'name' => $file_name
             ]
         ];

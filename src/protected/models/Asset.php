@@ -189,7 +189,8 @@ class Asset extends BaseAsset
      */
     public function assetType($asset_type)
     {
-        $this->getDbCriteria()->compare('t.asset_type_id', AssetType::model()->assetType($asset_type)->find()->asset_type_id);
+        $this->getDbCriteria()->compare('t.asset_type_id', 
+            AssetType::model()->assetType($asset_type)->find()->asset_type_id);
         return $this;
     }
 
@@ -223,7 +224,7 @@ class Asset extends BaseAsset
      * @param  string $is_used The file name to filter by.
      * @return Asset           A reference to this.
      */
-    public function isUsed($is_used = self::IS_NOT_USED) 
+    public function isUsed($is_used = self::IS_NOT_USED)
     {
         $this->getDbCriteria()->compare('t.is_used', $is_used);
         return $this;

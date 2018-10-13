@@ -20,15 +20,20 @@ return [
     // The date format used by the database
     'dbDateFormat' => 'Y-m-d H:i:s',
 
-    'global_root_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/' : '',
+    'global_root_dir' => array_key_exists('HTTP_HOST', $_SERVER) 
+        ? 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/' : '',
 
-    'local_asset_dir' => (getenv("DOCUMENT_ROOT") ? getenv("DOCUMENT_ROOT") : realpath(dirname(__FILE__) . '/../..')) . '/assets/',
+    'local_asset_dir' => (getenv("DOCUMENT_ROOT") 
+        ? getenv("DOCUMENT_ROOT") : realpath(dirname(__FILE__) . '/../..')) . '/assets/',
 
-    'relative_asset_dir' =>array_key_exists('HTTP_HOST', $_SERVER) ?  '//' . $_SERVER['HTTP_HOST'] . '/read/asset/' : '',
+    'relative_asset_dir' =>array_key_exists('HTTP_HOST', $_SERVER) 
+        ?  '//' . $_SERVER['HTTP_HOST'] . '/read/asset/' : '',
 
-    'relative_image_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? '//' . $_SERVER['HTTP_HOST'] . '/read/image/' : '',
+    'relative_image_dir' => array_key_exists('HTTP_HOST', $_SERVER) 
+        ? '//' . $_SERVER['HTTP_HOST'] . '/read/image/' : '',
 
-    'relative_document_dir' => array_key_exists('HTTP_HOST', $_SERVER) ? '//' . $_SERVER['HTTP_HOST'] . '/read/document/' : '',
+    'relative_document_dir' => array_key_exists('HTTP_HOST', $_SERVER) 
+        ? '//' . $_SERVER['HTTP_HOST'] . '/read/document/' : '',
 
     'asset_library' => [
         'valid_image_types' => [
