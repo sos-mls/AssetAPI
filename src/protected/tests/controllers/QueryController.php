@@ -23,17 +23,6 @@ class QueryController_Test extends TestController
     const DEFAULT_FILE_NAME = '/contain_aspect_true.png';
     const EXPECTED_HEIGHT_KEY = 'expected_height';
     const EXPECTED_WIDTH_KEY = 'expected_width';
-    const THUMBNAIL_POST = [
-        'actions' => [
-            [
-                Action_Image::NAME_KEY    => "thumbnail",
-                Action_Image::WIDTH_KEY   => 150,
-                Action_Image::HEIGHT_KEY  => 150,
-                self::EXPECTED_WIDTH_KEY  => 150,
-                self::EXPECTED_HEIGHT_KEY => 150
-            ]
-        ]
-    ];
 
     /**
      * Sets the controller name
@@ -157,7 +146,18 @@ class QueryController_Test extends TestController
             ]
         ];
 
-        $_POST = self::THUMBNAIL_POST;
+        // default thumbnail post
+        $_POST = [
+            'actions' => [
+                [
+                    Action_Image::NAME_KEY    => "thumbnail",
+                    Action_Image::WIDTH_KEY   => 150,
+                    Action_Image::HEIGHT_KEY  => 150,
+                    self::EXPECTED_WIDTH_KEY  => 150,
+                    self::EXPECTED_HEIGHT_KEY => 150
+                ]
+            ]
+        ];
 
         $_SERVER['REDIRECT_URL'] = '/create/';
         ob_start();
