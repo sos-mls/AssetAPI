@@ -54,6 +54,7 @@ return [
             IMAGETYPE_PNG,
         ],
         'valid_document_types' => [
+            "text/x-c",
             "text/plain",
             "text/csv",
             "application/vnd.ms-excel"
